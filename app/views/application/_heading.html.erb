@@ -1,0 +1,26 @@
+
+<% if model ||= nil %>
+  <%- title ||= model.class.name.titleize -%>
+
+  <%- subtitle ||= model.persisted? ? model.to_s : '' -%>
+<% end %>
+
+<% unless prefix ||= nil %>
+  <% prefix ||= params[:action].in?(%w(edit new show)) ? params[:action] : '' %>
+
+  <%- prefix = prefix.titleize -%>
+<% end %>
+
+<div class="page-header">
+  <div class="pull-right">
+    <%= yield %>
+  </div>
+
+  <h3>
+    <%= prefix %>
+    <%= title %>
+    <small>
+      <%= (subtitle || '').truncate(40) %>
+    </small>
+  </h3>
+</div>

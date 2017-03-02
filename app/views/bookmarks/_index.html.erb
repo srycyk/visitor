@@ -1,0 +1,11 @@
+
+<% locals = { title: 'Bookmarks', subtitle: tag_title(@tag) } %>
+
+<%= render layout: 'heading', locals: locals  do %>
+  <%= '' %>
+<% end %>
+
+<%= render 'table', tag: @tag, bookmarks: @bookmarks %>
+
+<%= render 'links', tag: @tag %>
+

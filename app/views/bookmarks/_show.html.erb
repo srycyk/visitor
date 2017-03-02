@@ -1,0 +1,25 @@
+
+<%= render 'heading', model: bookmark %>
+
+<dl class="dl-horizontal">
+  <dt>Url</dt>
+  <dd><%= bookmark.url %></dd>
+
+  <dt>Title</dt>
+  <dd><%= bookmark.title %></dd>
+
+  <dt>Description</dt>
+  <dd><%= bookmark.description %></dd>
+
+  <dt>Tag</dt>
+  <dd><%= bookmark.tag.to_path %></dd>
+
+  <dt>Created</dt>
+  <dd><%= show_time bookmark.created_at %></dd>
+
+  <dt>Updated</dt>
+  <dd><%= show_time bookmark.updated_at %></dd>
+</dl>
+
+<%= render 'links', tag: tag, bookmark: bookmark %>
+

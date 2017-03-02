@@ -1,0 +1,26 @@
+
+<span class="dropdown">
+  <button class="btn btn-link btn-sm dropdown-toggle" type="button"
+          id="dropdown-<%= dom_id tag %>" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
+    <%= 'Actions' %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-<%= dom_id tag %>">
+    <li>
+      <%= link_to site_count(tag), [tag, :bookmarks] %>
+    </li>
+    <li>
+      <%= link_to "Edit tag #{tag}", [:edit, tag] %>
+    </li>
+    <li>
+      <%= link_to "Delete tag #{tag}", tag, method: :delete,
+                                       data: { confirm: 'Are you sure?' } %>
+    </li>
+    <li>
+      <%= link_to "New tag under #{tag}", [:new, :tag, tag_id: tag] %>
+    </li>
+  </ul>
+</span>
+
+

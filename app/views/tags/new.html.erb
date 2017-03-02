@@ -1,0 +1,9 @@
+
+<% subtitle = @tag.tag && "under #{@tag.tag.to_path}" %>
+
+<%= render 'heading', model: @tag, subtitle: subtitle %>
+
+<%= render 'form', tag: @tag %>
+
+<%= render 'links' %>
+

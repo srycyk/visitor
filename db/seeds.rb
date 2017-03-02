@@ -5,5 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
+
+require 'tag_name_factory'
+
+#user = CreateAdminService.new.call
+
+include TagNameFactory
+
+  Tag.transaction do
+    Tag.delete_all
+
+    seed_tag_tree
+  end
+

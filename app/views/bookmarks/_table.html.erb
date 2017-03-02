@@ -1,0 +1,57 @@
+
+<div class='table-responsive'>
+<table class="<%= table_classes %>">
+  <thead>
+    <tr>
+      <th><%= link_to 'Url', by: 'url' %></th>
+      <th><%= link_to ' Title', by: 'title' %></th>
+      <th><%= link_to 'Desc', by: 'description' %></th>
+      <th><%= link_to 'Date', by: 'date' %></th>
+      <% if tag %>
+        <th></th>
+        <th></th>
+      <% else %>
+        <th><%= link_to 'Tag', by: 'tag' %></th>
+      <% end %>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% bookmarks.each do |bookmark| %>
+      <tr>
+        <% url = bookmark.url %>
+        <td>
+          <%= link_to url.truncate(30), url, class: 'bookmark',
+                                             target: '_blank',
+                                             title: url %>
+        </td>
+
+        <td>
+          <small><%= bookmark.title %></small>
+        </td>
+
+        <td>
+          <small><%= (bookmark.description || '').truncate(140) %></small>
+        </td>
+
+        <td>
+          <em class="small"><%= show_date bookmark.updated_at %></em>
+        </td>
+
+        <% if tag %>
+          <td><%= link_up :show, [tag, bookmark], remote %></td>
+
+          <td><%= link_up :edit, [:edit, tag, bookmark], remote %></td>
+
+          <td><%= link_up :delete, [tag, bookmark] %></td>
+        <% else %>
+          <td><%= bookmark.tag %></td>
+
+          <td><%= link_up :show, [bookmark.tag, bookmark] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

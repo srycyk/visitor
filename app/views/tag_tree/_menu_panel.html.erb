@@ -1,0 +1,16 @@
+
+<% level += 1 %>
+
+<div class="panel-group" id="menu-<%= level %>"
+           role="tablist" aria-multiselectable="true">
+
+  <% tags.sort_by(&:name).each do |tag| %>
+    <%= render 'tag_tree/menu_item', tag: tag, level: level %>
+  <% end %>
+
+<!--
+  <div class="panel-footer">
+  </div>
+-->
+</div>
+

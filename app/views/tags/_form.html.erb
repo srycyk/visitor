@@ -1,0 +1,16 @@
+
+<% set_large_form! %>
+
+<%= form_for tag do |f| %>
+  <%= render 'error_messages', model: tag %>
+
+  <%= text_field_group f, :name, mandatory: true, field_cols: 4 %>
+
+  <%= text_field_group f, :title %>
+
+  <%= select_field_group f, :tag_id, select_option_tags, blank: true, cols: 6 %>
+
+  <%= offset_row { submit_tag 'Save', class: submit_class } %>
+<% end %>
+
+<br>

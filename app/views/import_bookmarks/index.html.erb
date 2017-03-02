@@ -1,0 +1,21 @@
+
+<%= render 'heading', title: 'Import Bookmarks' %>
+
+<%= form_for @import_bookmark, inline_form_atts.merge(multipart: true) do |f| %>
+  <%= render 'error_messages', model: @import_bookmark %>
+
+  <%= file_field_group f, :bookmark_file %>
+
+  <%= submit_tag 'Upload', class: submit_class %>
+<% end %>
+
+<br>
+
+<%= form_for @import_bookmark.persistent!, form_atts do |f| %>
+  <%= text_area_field_group f, :csv_text, field_cols: 80, rows: 8 %>
+
+  <%= select_field_group f, :tag_id, select_option_tags, blank: true %>
+
+  <%= offset_row { submit_tag 'Import', class: submit_class } %>
+<% end %>
+

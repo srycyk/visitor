@@ -1,0 +1,49 @@
+
+<%= render 'heading', model: @tag %>
+
+<dl class="dl-horizontal">
+  <dt>Name</dt>
+  <dd>
+    <%= @tag.name %>
+  </dd>
+
+  <dt>Title
+  <dd>
+    <%= @tag.title %>
+  </dd>
+
+  <dt>Parents</dt>
+  <dd>
+    <%= @tag.branch.map(&:info) * ' -> ' %>
+  </dd>
+
+
+  <dt>Direct children</dt>
+  <dd>
+    <%= @tag.tags_count %>
+    <%= ' &nbsp; - &nbsp; '.html_safe %>
+    <%= @tag.tags.map(&:info) * ', ' %>
+  </dd>
+
+  <dt>Number of bookmarks</dt>
+  <dd>
+    <%= @tag.bookmarks_count %>
+  </dd>
+
+  <dt>Created</dt>
+  <dd>
+    <%= show_time @tag.created_at %>
+  </dd>
+
+  <dt>Updated</dt>
+  <dd>
+    <%= show_time @tag.updated_at %>
+  </dd>
+
+  <dt>Tree</dt>
+  <dd>
+    <pre><%= @tag.to_tree(indent: ' ' * 4) %></pre>
+  </dd>
+</dl>
+
+<%= render 'links', tag: @tag %>

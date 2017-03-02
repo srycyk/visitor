@@ -1,0 +1,54 @@
+
+<div class='table-responsive'>
+<table class="<%= table_classes %>">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Parent</th>
+      <th>Children</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% tags.each do |tag| %>
+      <tr>
+        <td>
+          <%= tag.name %>
+        </td>
+        <td>
+          <%= tag.title %>
+        </td>
+        <td>
+          <%= tag.branch * '/' %>
+        </td>
+        <td>
+          <%= tag.tags_count %>
+        </td>
+        <% text = pluralize(tag.bookmarks_count, 'bookmark') %>
+        <td>
+          <%= link_up :list, [tag, :bookmarks], text: text %>
+        </td>
+        <td>
+          <%= link_up :show, tag %>
+        </td>
+        <td>
+          <%= link_up :edit, [:edit, tag] %>
+        </td>
+        <td>
+          <%= link_up :new, [:new, :tag, tag_id: tag] %>
+        </td>
+        <td>
+          <%= link_up :delete, tag %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+

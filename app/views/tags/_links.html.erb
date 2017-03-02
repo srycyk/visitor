@@ -1,0 +1,20 @@
+
+<% tag ||= nil %>
+<% action ||= params[:action] %>
+
+<div>
+  <div class="btn-group btn-group-justified" role="group" aria-label="tag-btns">
+    <% if tag %>
+      <% if action != 'edit' %>
+        <%= link_up :edit, [:edit, tag] %>
+      <% end %>
+
+      <% if action != 'show' %>
+        <%= link_up :show, tag %>
+      <% end %>
+    <% end %>
+
+    <%= link_up :back, :tags %>
+  </div>
+</div>
+

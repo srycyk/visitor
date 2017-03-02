@@ -1,0 +1,32 @@
+
+<% tag ||= nil %>
+<% bookmark ||= nil %>
+<% action ||= params[:action] %>
+
+<% if tag %>
+  <div class="btn-group btn-group-justified" role="group" aria-label="bmark-btns">
+    <% if action == 'index' %>
+      <% js = %{$('.bookmark').each(function() { window.open($(this).attr('href'), '_blank') })} %>
+
+      <%= link_up :js, '#', onclick: js + ' ; return false ',
+                            text: 'Open all sites' %>
+
+      <%= link_up :new, [:new, tag, :bookmark], remote %>
+    <% end %>
+
+    <% if bookmark %>
+      <% if action != 'show' %>
+        <%= link_up :show, [tag, bookmark], remote %>
+      <% end %>
+
+      <% if action != 'edit' %>
+        <%= link_up :edit, [:edit, tag, bookmark], remote %>
+      <% end %>
+    <% end %>
+
+    <% if action != 'index' %>
+      <%= link_up :back, [tag, :bookmarks], remote %>
+    <% end %>
+  </div>
+<% end %>
+

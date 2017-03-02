@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302130151) do
+ActiveRecord::Schema.define(version: 20170302205907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.string   "url"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "tag_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["tag_id"], name: "index_bookmarks_on_tag_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.integer  "tag_id"
+    t.integer  "tags_count"
+    t.integer  "bookmarks_count"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["tag_id"], name: "index_tags_on_tag_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -37,4 +58,5 @@ ActiveRecord::Schema.define(version: 20170302130151) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "bookmarks", "tags"
 end

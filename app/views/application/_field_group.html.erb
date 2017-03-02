@@ -1,0 +1,38 @@
+
+<% title ||= title == false ? ' &nbsp; '.html_safe :
+                              name.to_s.tr('_', ' ').capitalize %>
+
+<% mandatory ||= false %>
+
+<% settings ||= form_field_settings %>
+
+<% field_size ||= settings.field_size %>
+<% label_cols ||= settings.label_cols %>
+<% field_cols ||= settings.field_cols %>
+
+<div class="form-group form-group-<%= field_size %>">
+  <%= label_tag name, class: "control-label col-md-#{label_cols}" do %>
+    <%= title %>
+
+    <% if mandatory %>
+      <%= icon 'asterisk' %>
+    <% end %>
+  <% end %>
+
+  <div class="col-md-<%= field_cols %>">
+    <%= yield %>
+
+    <% if suffix ||= nil %>
+      <strong class='help-inline'>
+        <%= suffix %>
+      </strong>
+    <% end %>
+
+    <% if help ||= nil %>
+      <%= render layout: 'help' do %>
+        <%= help %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
