@@ -2,6 +2,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// by me
+.page-header {
+  margin-top: 0px;
+  padding-top: 0px;
+}
 // make all images responsive by default
 img {
   @extend .img-responsive;
@@ -9,7 +14,8 @@ img {
   }
 // override for the 'Home' navigation link
 .navbar-brand {
-  font-size: inherit;
+  font-size: 20px;
+  padding-right: 0px;
   }
 
 // THESE ARE EXAMPLES YOU CAN MODIFY

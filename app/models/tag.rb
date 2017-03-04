@@ -19,6 +19,8 @@ class Tag < ApplicationRecord
 
   scope :eager_parents, -> (depth=6) { includes tree_includes(depth, :tag) }
 
+  scope :search, -> query { where search_fields.(query) }
+
   validates :name, presence: true
 
   def to_s(suffix='')
@@ -33,12 +35,12 @@ class Tag < ApplicationRecord
     expand.include? candidate_tag
   end
 
-=begin
   def expunge
     tags.each {|tag| tag.expunge }
 
     destroy
   end
+=begin
 =end
 
   def expand
@@ -67,15 +69,15 @@ class Tag < ApplicationRecord
   end
 
   def info
-    "#{self}(#{bookmarks_count || 0})"
+    "#{heading}, #{tags_count || 0} underneath, #{bookmarks_count || 0} bookmarked"
+  end
+
+  def heading
+    (title.presence || name).capitalize
   end
 
   def debug
     "#{self} #{inspect} #{to_path}"
-  end
-
-  def heading
-    "#{bookmarks_count} - #{title.presence || name}"
   end
 
   class << self
@@ -93,6 +95,11 @@ class Tag < ApplicationRecord
 
     def obliterate!
       roots.delete_all
+    end
+
+
+    def search_fields
+      Concerns::SearchFields.new(:name, :title, table: table_name)
     end
 
     def tree_includes(depth, assoc=:tags)

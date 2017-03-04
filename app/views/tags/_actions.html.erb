@@ -1,9 +1,12 @@
 
 <span class="dropdown">
-  <button class="btn btn-link btn-sm dropdown-toggle" type="button"
+  <button class="btn btn-link btn-xs dropdown-toggle" type="button"
           id="dropdown-<%= dom_id tag %>" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="true">
-    <%= 'Actions' %>
+          aria-haspopup="true" aria-expanded="true"
+          title="Actions for <%= tag.info %>">
+    <%= icon 'list' %>
+    &nbsp;
+    <%= tag.heading %>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-<%= dom_id tag %>">
@@ -19,6 +22,12 @@
     </li>
     <li>
       <%= link_to "New tag under #{tag}", [:new, :tag, tag_id: tag] %>
+    </li>
+    <li>
+      <%= link_to "Show tag #{tag}", tag %>
+    </li>
+    <li>
+      <%= link_to "New bookmark under #{tag}", [:new, tag, :bookmark] %>
     </li>
   </ul>
 </span>

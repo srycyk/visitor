@@ -12,9 +12,11 @@
       <% if action != 'show' %>
         <%= link_up :show, tag %>
       <% end %>
-    <% end %>
 
-    <%= link_up :back, :tags %>
+      <%= link_up :back, [tag, :bookmarks] %>
+    <% else %>
+      <%= link_up :back, :tags %>
+    <% end %>
   </div>
 </div>
 

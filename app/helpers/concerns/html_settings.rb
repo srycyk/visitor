@@ -6,15 +6,11 @@ module Concerns
     end
 
     def index_classes
-      'table table-striped table-bordered'
+      'table table-hover table-striped table-bordered'
     end
 
     def form_atts(classes='')
       default_form_atts classes
-    end
-
-    def submit_class
-      'btn btn-primary btn-md'
     end
 
     def default_form_atts(classes='', form_class="form-horizontal")

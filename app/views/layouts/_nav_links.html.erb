@@ -1,0 +1,21 @@
+  
+  <li class="<%= active %i(new tag) %>">
+    <% title = 'Create a top level tag' %>
+    <%= link_to 'New tag', %i(new tag), title: title %>
+  </li>
+  <li class="<%= active :tags %>">
+    <% title = 'List all tags' %>
+    <%= link_to 'Tags', :tags, title: title %>
+  </li>
+  <li class="<%= active :bookmarks %>">
+    <% title = 'List all bookmarks' %>
+    <%= link_to 'Bookmarks', :bookmarks, title: title %>
+  </li>
+  <li class="<%= active :import_bookmarks %>">
+    <% title = 'Upload bookmark files from browsers, or from CSV files' %>
+    <%= link_to 'Import', :import_bookmarks, title: title %>
+  </li>
+  <li class="<%= active :export_bookmarks %>">
+    <% title = 'Download all current bookmarks as CSV File' %>
+    <%= link_to 'Export', :export_bookmarks, title: title %>
+  </li>

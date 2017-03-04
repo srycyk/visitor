@@ -6,6 +6,8 @@ class TagsController < TagTreeController
   # GET /tags.json
   def index
     @tags = Tag.ordered.eager_parents.all
+
+    @tags = @tags.search(params[:q]) if params[:q].present?
   end
 
   # GET /tags/1
@@ -55,7 +57,8 @@ class TagsController < TagTreeController
   # DELETE /tags/1
   # DELETE /tags/1.json
   def destroy
-    @tag.delete
+    @tag.expunge
+
     respond_to do |format|
       format.html { redirect_to :tags, notice: "Tag, #{@tag} deleted." }
       format.json { head :no_content }

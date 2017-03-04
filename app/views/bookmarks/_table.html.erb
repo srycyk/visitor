@@ -22,23 +22,19 @@
       <tr>
         <% url = bookmark.url %>
         <td>
-          <%= link_to url.truncate(30), url, class: 'bookmark',
+          <%= link_to url.truncate(50), url, class: 'bookmark',
                                              target: '_blank',
                                              title: url %>
         </td>
-
         <td>
           <small><%= bookmark.title %></small>
         </td>
-
         <td>
           <small><%= (bookmark.description || '').truncate(140) %></small>
         </td>
-
         <td>
           <em class="small"><%= show_date bookmark.updated_at %></em>
         </td>
-
         <% if tag %>
           <td><%= link_up :show, [tag, bookmark], remote %></td>
 

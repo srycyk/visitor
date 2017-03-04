@@ -6,7 +6,7 @@ module TagsHelper
   end
 
   def site_count(tag)
-    pluralize tag.bookmarks_count, 'site'
+    pluralize tag.bookmarks_count, 'bookmarked site'
   end
 
   def tag_title(tag, prefix: 'for ', suffix: ' ')

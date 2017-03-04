@@ -6,12 +6,16 @@
                          data-parent="#menu-<%= level %>"
                          href="#panel-<%= dom_id tag %>"
                          aria-controls="<%= dom_id tag %>"
-                         title="<%= tag.heading %>">
+                         title="<%= pluralize tag.tags_count, 'child' %>">
 
-          <%= indent level %>
-          <%= tag %>
-          <span class="badge"><%= tag.tags_count or '0' %></span>
+            <%= tag %>
+            <span class="caret"></span>
         </a>
+        <span class="pull-right">
+          <%= link_to [tag, :bookmarks], title: site_count(tag) do %>
+            <span class="badge"><%= tag.bookmarks_count or '0' %></span>
+          <% end %>
+        </span>
       </h6>
     </div>
 
@@ -22,10 +26,7 @@
          role="tabpanel" aria-labelledby="head-<%= dom_id tag %>">
 
       <div class="panel-body">
-        <%= indent level %>
         <%= render 'tags/actions', tag: tag %>
-
-        <%= link_to site_count(tag), [tag, :bookmarks], remote: true %>
 
         <%= render 'tag_tree/menu_panel', tags: tag.tags, level: level %>
       </div>

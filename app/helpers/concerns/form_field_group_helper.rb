@@ -25,11 +25,17 @@ module Concerns
     end
 
     def set_large_form!
-      form_field_settings field_size: 'lg', label_cols: 2, field_cols: 10
+      form_field_settings field_size: 'lg', label_cols: 2, field_cols: 8
     end
 
     def set_medium_form!
       form_field_settings field_size: 'md', label_cols: 3, field_cols: 7
+    end
+
+    def set_small_form!
+      @form_field_settings = nil
+
+      form_field_settings
     end
 
     def field_group(name, locals={}, options={}, &block)
@@ -38,6 +44,12 @@ module Concerns
       args = options.merge layout: 'field_group', locals: locals
 
       render args, &block
+    end
+
+    def submit_class(size=nil)
+      size = form_field_settings.field_size unless size
+
+      "btn btn-primary btn-#{size}"
     end
 
     def text_field_group(form, name, locals={})
@@ -67,7 +79,7 @@ module Concerns
     end
 
     def file_field_group(form, name, locals={})
-      field_group name do
+      field_group name, locals do
         form.file_field name, form_control.merge(locals)
       end
     end

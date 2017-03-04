@@ -1,15 +1,14 @@
 
 <main role="main">
-  <%= render 'layouts/messages' %>
-
   <div class='row'>
     <div class='col-md-3'>
       <%= render 'tag_tree/menu' %>
-      <%= render 'application/links' %>
+      <%#= render 'application/links' %>
     </div>
 
     <div class='col-md-9'>
       <div id='main-pane'>
+        <%= render 'layouts/messages' %>
         <%= yield %>
       </div>
     </div>

@@ -1,10 +1,10 @@
 
-<%# set_large_form! %>
+<% set_medium_form! %>
 
-<%= form_for [tag, bookmark] do |f| %>
+<%= form_for [tag, bookmark], form_atts do |f| %>
   <%= render 'error_messages', model: @bookmark %>
 
-  <%= text_field_group f, :url, mandatory: true, field_cols: 12 %>
+  <%= text_field_group f, :url, mandatory: true, field_cols: 8 %>
 
   <%= text_field_group f, :title %>
 

@@ -84,7 +84,7 @@ module Concerns
     end
 
     def html_class
-      "btn btn-sm btn-default"
+      "btn btn-xs btn-default"
     end
 
     def set_control_opts
