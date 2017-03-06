@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Bookmarks", type: :feature do
+  include UserSupport
+
   URL = 'http://localhost:3000/index.htm'
 
   let (:root_tag) { create :tag }
@@ -8,6 +10,8 @@ RSpec.feature "Bookmarks", type: :feature do
   let (:tag) { create :tag, tag_id: root_tag.id }
 
   let (:bookmark) { create :bookmark, tag_id: tag.id }
+
+  before { signin(user.email, user.password) }
 
   feature "new bookmark" do
     scenario "created" do

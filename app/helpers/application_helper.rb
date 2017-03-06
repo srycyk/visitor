@@ -2,6 +2,12 @@
 module ApplicationHelper
   include Concerns::HtmlSettings
 
+  def search_form_controller?(controller)
+    controllers = %w(tags bookmarks import_bookmarks export_bookmarks)
+
+    controllers.include? params['controller']
+  end
+
   def icon(name)
     "<span class='glyphicon glyphicon-#{name}' aria-hidden='true'></span>"
       .html_safe

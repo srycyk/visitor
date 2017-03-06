@@ -1,9 +1,12 @@
 
-<h5>
-  <%= icon 'tags' %>
-  Tag Menu
-  <small>bookmark folders</small>
-</h5>
+<% unless @tag_tree.blank? %>
+  <h5>
+    <%= icon 'tags' %>
+    Tag Menu
+    <small>bookmark folders</small>
+  </h5>
 
-<%= render 'tag_tree/menu_panel', tags: @tag_tree, level: 0 if @tag_tree %>
+  <%= render 'tag_tree/menu_panel', tags: @tag_tree, level: 0 %>
+<% end %>
+
 

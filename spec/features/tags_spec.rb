@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature "Tags", type: :feature do
+  include UserSupport
+
   let (:root_tag) { create :tag }
 
   let (:tag) { create :tag, tag_id: root_tag.id }
+
+  before { signin(user.email, user.password) }
 
   feature "new tag" do
     scenario "creates root" do

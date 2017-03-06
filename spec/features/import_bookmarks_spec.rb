@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "ImportBookmarks", type: :feature do
+  include UserSupport
+
   PATH_ROOT = "#{Rails.root}/spec/fixtures/"
 
   PATH_TEMPLATE = "#{PATH_ROOT}bookmarks-%s.html"
@@ -8,6 +10,8 @@ RSpec.feature "ImportBookmarks", type: :feature do
   let (:root_tag) { create :tag }
 
   let (:tag) { create :tag, tag_id: root_tag.id }
+
+  before { signin(user.email, user.password) }
 
   feature "upload bookmark html files" do
     scenario "from firefox" do

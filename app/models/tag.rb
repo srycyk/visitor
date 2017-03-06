@@ -93,6 +93,14 @@ class Tag < ApplicationRecord
       end
     end
 
+    def create_tree(tag_or_user, *names)
+      if name = names.pop
+        create_tree(tag_or_user, *names).tags.find_or_create_by name: name.to_s
+      else
+        tag_or_user
+      end
+    end
+
     def obliterate!
       roots.delete_all
     end

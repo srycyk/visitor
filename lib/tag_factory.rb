@@ -18,7 +18,8 @@ class TagFactory < Struct.new(:tag)
   end
 
   class << self
-    def call(name, title: name.titleize, tag: nil)
+    def call(name, user=nil, title: name.titleize, tag: nil)
+      #Tag.create user_id: user.to_param, name: name, title: title, tag: tag
       Tag.create name: name, title: title, tag: tag
     end
 
