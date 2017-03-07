@@ -39,7 +39,7 @@ module Concerns
     end
 
     def type_prefix
-      type_has_no_prefix? ? '' : type.to_s
+      type_has_no_prefix? ? '' : type.to_s.humanize
     end
 
     def text_suffix(path)

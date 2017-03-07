@@ -1,41 +1,35 @@
-<div class="authform">
-  <h3>Edit <%= resource_name.to_s.humanize %></h3>
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-    </div>
-    <fieldset>
-      <p>Leave these fields blank if you don't want to change your password.</p>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
-    </fieldset>
-    <fieldset>
-      <p>You must enter your current password to make changes.</p>
-      <div class="form-group">
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, class: 'form-control' %>
-      </div>
-    </fieldset>
-    <%= f.submit 'Update', :class => 'button right' %>
-  <% end %>
+
+<%= render 'heading', title: "Edit user", prefix: '', subtitle: 'own details' %>
+
+<% set_medium_form! %>
+
+<%= form_for resource, form_atts.merge(as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= text_field_group f, :name %>
+
+  <%= text_field_group f, :email, type: :email, mandatory: true,
+                                                autofocus: true %>
+
+  <%= text_field_group f, :password, type: :password %>
+
+  <% help = 'Leave these passwords blank unless you want to change it' %>
+  <%= text_field_group f, :password_confirmation, type: :password,
+                                                  help: help %>
+
+  <%= text_field_group f, :current_password, type: :password,
+                                             mandatory: true %>
+
+  <%= offset_row { submit_tag 'Update', class: submit_class } %>
+<% end %>
+
+<br>
+
+<div>
+    <h3 class='text-danger'>Permanently Remove my Account</h3>
+    <p class='text-warning'>
+      This will delete all tags and bookmarks, so use with care!
+    </p>
+    <%= link_up_btn :delete, registration_path(resource_name), text: "Cancel my account" %>
 </div>
-<div class="authform">
-<h3>Cancel Account</h3>
-<p>Unhappy? We'll be sad to see you go.</p>
-<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
-</div>
+

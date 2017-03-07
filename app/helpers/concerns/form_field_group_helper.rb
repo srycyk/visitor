@@ -25,7 +25,7 @@ module Concerns
     end
 
     def set_large_form!
-      form_field_settings field_size: 'lg', label_cols: 2, field_cols: 8
+      form_field_settings field_size: 'lg', label_cols: 3, field_cols: 8
     end
 
     def set_medium_form!
@@ -57,6 +57,14 @@ module Concerns
         form.text_field name, form_control.merge(locals)
       end
     end
+
+=begin
+    def password_field_group(form, name, locals={})
+      field_group name, locals do
+        form.password_field name, form_control.merge(locals)
+      end
+    end
+=end
 
     def text_area_field_group(form, name, locals={})
       field_group name, {field_size: 'md'}.merge(locals) do

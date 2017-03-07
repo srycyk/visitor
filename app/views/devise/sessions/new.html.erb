@@ -1,4 +1,35 @@
 
+<%= render 'heading', title: "Sign in", prefix: '', subtitle: 'for registered users' %>
+
+<% set_large_form! %>
+
+<%= form_for resource, form_atts.merge(as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= text_field_group f, :email, type: :email, mandatory: true, autofocus: true %>
+
+  <%= text_field_group f, :password, type: :password, mandatory: true %>
+
+  <%= checkbox_field_group f, :remember_me %>
+
+  <%= offset_row { submit_tag 'Sign in', class: submit_class } %>
+<% end %>
+
+<br>
+
+<div>
+  <div class="btn-group btn-group-justified" role="group" aria-label="reg-btns">
+    <%- if devise_mapping.registerable? %>
+      <%= link_up_btn :sign_up, new_registration_path(resource_name) %>
+    <% end -%>
+
+    <%- if devise_mapping.recoverable? %>
+      <%= link_up_btn :forgot_password, new_password_path(resource_name) %>
+    <% end -%>
+  </div>
+</div>
+
+<!--
 <div class="authform">
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
     <h3>Sign in</h3>
@@ -27,3 +58,4 @@
       <% end -%>
   <% end %>
 </div>
+-->
