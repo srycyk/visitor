@@ -13,7 +13,7 @@ module UserForTag
   end
 
   def owner?(candidate_user)
-    to_param == candidate_user.to_param
+    candidate_user and to_param == candidate_user.to_param
   end
 end
 

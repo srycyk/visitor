@@ -1,7 +1,7 @@
 
 require 'csv'
 
-class BookmarkCsvLoader < Struct.new(:list, :tag_path)
+class BookmarkCsvLoader < Struct.new(:list, :tag_path, :user)
   FIELD_NAMES = %i(url tag title description)
 
   DEFAULT_TAG = 'imported'
@@ -30,7 +30,9 @@ class BookmarkCsvLoader < Struct.new(:list, :tag_path)
   end
 
   def load_from_atts(atts)
-    tag = Tag.mkpath((tag_path || atts[:tag] || DEFAULT_TAG).split '/').last
+    tags = (tag_path || atts[:tag] || DEFAULT_TAG).split('/')
+
+    tag = Tag.create_tree(user, *tags)
 
     url, title, description = atts.values_at :url, :title, :description
 

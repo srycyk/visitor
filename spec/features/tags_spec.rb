@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Tags", type: :feature do
   include UserSupport
-
-  let (:root_tag) { create :tag }
-
-  let (:tag) { create :tag, tag_id: root_tag.id }
+  include TagSupport
 
   before { signin(user.email, user.password) }
 
@@ -45,6 +42,8 @@ RSpec.feature "Tags", type: :feature do
   feature "existing tag" do
     scenario "changes name" do
       visit edit_tag_path tag
+#puts tag.inspect
+#save_and_open_page
 
       fill_in "tag_name", with: "price_tag"
 
@@ -85,7 +84,7 @@ RSpec.feature "Tags", type: :feature do
 
       visit tags_path
 
-      click_link 'Edit'
+      find("a[title^='Edit']").click
 
       expect(page).to have_content(root_tag.to_s)
     end
@@ -97,7 +96,7 @@ RSpec.feature "Tags", type: :feature do
 
       visit tags_path
 
-      click_link 'Delete'
+      find("a[title^='Delete']").click
 
       expect(page).to have_content(/Tag.+#{root_tag}.+deleted/)
     end
@@ -109,7 +108,7 @@ RSpec.feature "Tags", type: :feature do
 
       visit tags_path
 
-      click_link 'Show'
+      find("a[title^='Show']").click
 
       expect(page).to have_content(/Show.+Tag.+#{root_tag.to_s}/)
     end

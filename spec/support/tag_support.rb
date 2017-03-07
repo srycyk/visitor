@@ -1,21 +1,15 @@
 
-=begin
-require 'tag_name_factory'
+require 'active_support/concern'
 
 module TagSupport
   extend ActiveSupport::Concern
 
-  include TagNameFactory
-
-  FIXTURE_ROOT = "#{Rails.root}/spec/fixtures/"
-
-  FIXTURE_TEMPLATE = "#{FIXTURE_ROOT}bookmarks-%s.html"
-
   included do
-    let(:tag) { nested_tag 3 }
-  end
+    let (:root_tag) { Tag.create name: 'level 1', user_id: user.to_param }
 
-  def x
+    let (:branch_tag) { Tag.create name: 'level 2', tag_id: root_tag.id }
+
+    let(:tag) { Tag.create name: 'level 3', tag_id: branch_tag.id }
   end
 end
-=end
+

@@ -5,17 +5,19 @@
 <div>
   <div class="btn-group btn-group-justified" role="group" aria-label="tag-btns">
     <% if tag %>
+      <%= link_up_btn :back, [tag, :bookmarks] %>
+    <% else %>
+      <%= link_up_btn :back, :tags %>
+    <% end %>
+
+    <% if tag %>
       <% if action != 'edit' %>
-        <%= link_up :edit, [:edit, tag] %>
+        <%= link_up_btn :edit, [:edit, tag] %>
       <% end %>
 
       <% if action != 'show' %>
-        <%= link_up :show, tag %>
+        <%= link_up_btn :show, tag %>
       <% end %>
-
-      <%= link_up :back, [tag, :bookmarks] %>
-    <% else %>
-      <%= link_up :back, :tags %>
     <% end %>
   </div>
 </div>

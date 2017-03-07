@@ -6,7 +6,9 @@
       <%= icon 'user' %> User <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li role="separator" class="divider"><%= current_user %></li>
+      <li class="dropdown-header"><%= current_user.to_s.truncate(30) %></li>
+
+      <li role="separator" class="divider"></li>
 
       <li><%= link_to 'Edit account', edit_user_registration_path %></li>
 

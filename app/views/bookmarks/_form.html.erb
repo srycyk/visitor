@@ -4,13 +4,15 @@
 <%= form_for [tag, bookmark], form_atts do |f| %>
   <%= render 'error_messages', model: @bookmark %>
 
-  <%= text_field_group f, :url, mandatory: true, field_cols: 8 %>
+  <%= text_field_group f, :url, mandatory: true,
+                                field_cols: 8,
+                                autofocus: true %>
 
   <%= text_field_group f, :title %>
 
   <%= text_area_field_group f, :description, rows: 4 %>
 
-  <%= select_field_group f, :tag_id, select_option_tags, cols: 8 %>
+  <%= select_field_group f, :tag_id, select_option_tags, cols: 6 %>
 
   <%= offset_row { submit_tag 'Save', class: submit_class } %>
 <% end %>

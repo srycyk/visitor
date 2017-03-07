@@ -1,12 +1,9 @@
 
 require 'rails_helper'
 
-require 'tag_name_factory'
-
 RSpec.describe Tag, type: :model do
-  include TagNameFactory
-
-  let(:tag) { nested_tag 3 }
+  include UserSupport
+  include TagSupport
 
   it "expands path" do
     expect(tag.to_path).to match /level 1.+level 2.+level 3/
@@ -37,7 +34,7 @@ RSpec.describe Tag, type: :model do
   end
 
   it "detects if candidate NOT in path" do
-    expect(tag.in_path? create_tag('race')).to be_falsey
+    expect(tag.in_path? create(:tag)).to be_falsey
   end
 
   it "increases counter cache" do
@@ -47,7 +44,7 @@ RSpec.describe Tag, type: :model do
   it "makes a new path given a list of tag names" do
     tag
 
-    extra_tag = Tag.mkpath('level 1', 'extra_tag').last
+    extra_tag = Tag.create_tree(user, 'level 1', 'extra_tag')
 
     expect(extra_tag.tag).to eq tag.root
   end

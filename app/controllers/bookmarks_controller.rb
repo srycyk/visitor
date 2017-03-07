@@ -48,10 +48,11 @@ class BookmarksController < TagTreeController
   # PATCH/PUT /bookmarks/1.json
   def update
     respond_to do |format|
+      @bookmark.user = current_user # To check if changed tag is user's own
       if @bookmark.update(bookmark_params)
         format.html { redirect_to path_for_redirect, notice: "Bookmark, #@bookmark updated." }
 
-        format.js { @bookmarks = BookmarkLister.new(@tag).() ; render :index }
+        format.js { @bookmarks = BookmarkLister.new(@bookmark.reload.tag).() ; render :index }
 
         format.json { render json: @bookmark, status: :ok }
       else
@@ -69,7 +70,7 @@ class BookmarksController < TagTreeController
   def destroy
     @bookmark.destroy
     respond_to do |format|
-      format.html { redirect_to path_for_redirect, notice: "Bookmark, #@bookmark deleted." }
+      format.html { redirect_to [@tag, :bookmarks], notice: "Bookmark, #@bookmark deleted." }
 
       format.json { head :no_content }
     end
@@ -80,16 +81,15 @@ class BookmarksController < TagTreeController
   def set_tag
     tag_id = params[:tag_id] || params.dig(:bookmark, :tag_id)
 
-    @tag = Tag.find_by id: tag_id
+    @tag = current_user.tags.find_by id: tag_id
   end
 
   def set_bookmark
-    #@bookmark = @tag.bookmarks.find(params[:id])
-    @bookmark = Bookmark.find(params[:id])
+    @bookmark = @tag.bookmarks.find(params[:id])
   end
 
   def path_for_redirect
-    [ @bookmark.tag || @tag, @bookmark ]
+    [ @bookmark.reload.tag || @tag, @bookmark ] # reload in case tag is changed
   end
 
   def bookmark_params

@@ -8,25 +8,26 @@
     <% if action == 'index' %>
       <% js = %{$('.bookmark').each(function() { window.open($(this).attr('href'), '_blank') })} %>
 
-      <%= link_up :js, '#', onclick: js + ' ; return false ',
-                            text: 'Open all sites' %>
+      <% title = 'Bring up all listed sites in separate tabs' %>
 
-      <%= link_up :new, [:new, tag, :bookmark], remote %>
+      <%= link_up_btn :js, '#', onclick: js + ' ; return false ',
+                            text: 'Open all sites', title: title %>
+
+      <%= link_up_btn :new, [:new, tag, :bookmark], remote %>
+    <% else %>
+      <%= link_up_btn :back, [tag, :bookmarks], remote %>
     <% end %>
 
     <% if bookmark %>
       <% if action != 'show' %>
-        <%= link_up :show, [tag, bookmark], remote %>
+        <%= link_up_btn :show, [tag, bookmark], remote %>
       <% end %>
 
       <% if action != 'edit' %>
-        <%= link_up :edit, [:edit, tag, bookmark], remote %>
+        <%= link_up_btn :edit, [:edit, tag, bookmark], remote %>
       <% end %>
     <% end %>
 
-    <% if action != 'index' %>
-      <%= link_up :back, [tag, :bookmarks], remote %>
-    <% end %>
   </div>
 <% end %>
 

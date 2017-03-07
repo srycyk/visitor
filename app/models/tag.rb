@@ -1,5 +1,7 @@
 
 class Tag < ApplicationRecord
+  include UserForTag
+
   belongs_to :tag, counter_cache: true, required: false
 
   has_many :tags, dependent: :destroy
@@ -8,6 +10,8 @@ class Tag < ApplicationRecord
 
   #belongs_to :parent, required: false, class_name: 'Tag'
   #has_many :children, class_name: 'Tag'
+
+  before_create { self.title = name.humanize if title.blank? }
 
   scope :ordered, -> { order :name }
 
@@ -81,7 +85,8 @@ class Tag < ApplicationRecord
   end
 
   class << self
-    def mkpath(*path_names)
+=begin
+    def mkpath(user, *path_names)
       parent = nil
 
       path_names.flatten.map do |name|
@@ -92,6 +97,7 @@ class Tag < ApplicationRecord
         tag
       end
     end
+=end
 
     def create_tree(tag_or_user, *names)
       if name = names.pop

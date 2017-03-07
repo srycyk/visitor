@@ -6,6 +6,8 @@ class ImportBookmark
 
   attr_accessor :bookmark_file, :csv_text, :tag_id
 
+  attr_accessor :user
+
   attr_accessor :persistent
 
   validates :bookmark_file, presence: true, unless: :persisted?
@@ -37,7 +39,7 @@ class ImportBookmark
   end
 
   def update
-    BookmarkCsvLoader.new(csv_text, tag_path).()
+    BookmarkCsvLoader.new(csv_text, tag_path, user).()
   end
 
   def reset

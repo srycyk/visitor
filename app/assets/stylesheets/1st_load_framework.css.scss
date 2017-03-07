@@ -7,6 +7,13 @@
   margin-top: 0px;
   padding-top: 0px;
 }
+
+dl dt {
+  padding: 3px;
+}
+dl dd {
+  padding: 3px;
+}
 // make all images responsive by default
 img {
   @extend .img-responsive;

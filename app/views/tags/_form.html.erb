@@ -4,7 +4,9 @@
 <%= form_for tag, form_atts do |f| %>
   <%= render 'error_messages', model: tag %>
 
-  <%= text_field_group f, :name, mandatory: true, field_cols: 4 %>
+  <%= text_field_group f, :name, mandatory: true,
+                                 field_cols: 4,
+                                 autofocus: true %>
 
   <%= text_field_group f, :title %>
 

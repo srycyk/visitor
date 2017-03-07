@@ -35,16 +35,16 @@
           <%= link_up :list, [tag, :bookmarks], text: text %>
         </td>
         <td>
-          <%= link_up :show, tag %>
+          <%= link_up_icon :show, tag %>
         </td>
         <td>
-          <%= link_up :edit, [:edit, tag] %>
+          <%= link_up_icon :edit, [:edit, tag] %>
         </td>
         <td>
-          <%= link_up :new, [:new, :tag, tag_id: tag] %>
+          <%= link_up_icon :new, [:new, :tag, tag_id: tag] %>
         </td>
         <td>
-          <%= link_up :delete, tag %>
+          <%= link_up_icon :delete, tag %>
         </td>
       </tr>
     <% end %>

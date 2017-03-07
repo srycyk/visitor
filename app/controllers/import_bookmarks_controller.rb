@@ -14,6 +14,8 @@ class ImportBookmarksController < TagTreeController
   end
 
   def update
+    @import_bookmark.user = current_user
+
     if @import_bookmark.persistent!.valid?
       bookmarks = @import_bookmark.update
 

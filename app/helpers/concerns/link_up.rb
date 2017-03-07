@@ -69,10 +69,14 @@ module Concerns
 
     def title_options
       unless options.has_key? :title
-        options[:title] = type_to_title || type.to_s.titlecase
+        options[:title] = title
       end
 
       options
+    end
+
+    def title
+      type_to_title or type.to_s.titlecase
     end
 
     def html_atts
@@ -84,7 +88,7 @@ module Concerns
     end
 
     def html_class
-      "btn btn-xs btn-default"
+      "btn btn-sm btn-link"
     end
 
     def set_control_opts

@@ -4,5 +4,6 @@ FactoryGirl.define do
     name { Faker::Ancient.primordial + ' ' + Faker::Ancient.primordial }
     title { Faker::Ancient.god + ' ' + Faker::Ancient.god }
     tag nil
+    user { create :user }
   end
 end

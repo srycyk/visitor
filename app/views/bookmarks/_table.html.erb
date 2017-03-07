@@ -36,15 +36,15 @@
           <em class="small"><%= show_date bookmark.updated_at %></em>
         </td>
         <% if tag %>
-          <td><%= link_up :show, [tag, bookmark], remote %></td>
+          <td><%= link_up_icon :show, [tag, bookmark], remote %></td>
 
-          <td><%= link_up :edit, [:edit, tag, bookmark], remote %></td>
+          <td><%= link_up_icon :edit, [:edit, tag, bookmark], remote %></td>
 
-          <td><%= link_up :delete, [tag, bookmark] %></td>
+          <td><%= link_up_icon :delete, [tag, bookmark] %></td>
         <% else %>
           <td><%= bookmark.tag %></td>
 
-          <td><%= link_up :show, [bookmark.tag, bookmark] %></td>
+          <td><%= link_up_icon :show, [bookmark.tag, bookmark] %></td>
         <% end %>
       </tr>
     <% end %>

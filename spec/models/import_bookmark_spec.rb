@@ -1,16 +1,10 @@
 
 require 'rails_helper'
 
-require 'tag_name_factory'
-
 RSpec.describe ImportBookmark, type: :model do
-  PATH_ROOT = "#{Rails.root}/spec/fixtures/"
-
-  PATH_TEMPLATE = "#{PATH_ROOT}bookmarks-%s.html"
-
-  include TagNameFactory
-
-  let(:tag) { nested_tag 3 }
+  include UserSupport
+  include TagSupport
+  include BookmarkSupport
 
   def bookmark_file_stub(data_path)
     double :bookmark_file, read: IO.read(data_path),
@@ -28,7 +22,9 @@ RSpec.describe ImportBookmark, type: :model do
   end
 
   def import_bookmark_update(csv_text='', tag=nil)
-    ImportBookmark.new(csv_text: csv_text, tag_id: tag.to_param).persistent!
+    ImportBookmark.new(csv_text: csv_text,
+                       tag_id: tag.to_param,
+                       user: user).persistent!
   end
 
   def self.browsers
@@ -40,7 +36,7 @@ RSpec.describe ImportBookmark, type: :model do
   describe "create" do
     browsers.each do |browser, re|
       it "reads #{browser} bookmarks" do
-        path = PATH_TEMPLATE % browser
+        path = fixture_template % browser
 
         import_bookmark = import_bookmark_create path
 
@@ -49,7 +45,7 @@ RSpec.describe ImportBookmark, type: :model do
     end
 
     it "reads csv file" do
-      path = PATH_ROOT + 'bookmarks.csv'
+      path = fixture_root + 'bookmarks.csv'
 
       import_bookmark = import_bookmark_create path
 
@@ -59,7 +55,7 @@ RSpec.describe ImportBookmark, type: :model do
 
     %w(empty html).each do |file_type|
       it "ignores invalid #{file_type} file" do
-        path = PATH_TEMPLATE % file_type
+        path = fixture_template % file_type
 
         import_bookmark = import_bookmark_create path
 
@@ -74,7 +70,7 @@ RSpec.describe ImportBookmark, type: :model do
     end
 
     it "resets itself" do
-      import_bookmark = import_bookmark_create(PATH_ROOT + 'bookmarks.csv')
+      import_bookmark = import_bookmark_create(fixture_root + 'bookmarks.csv')
 
       expect(import_bookmark.reset.bookmark_file).to be_nil
     end

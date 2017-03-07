@@ -1,14 +1,10 @@
 
 require 'rails_helper'
 
-require 'tag_name_factory'
-
 RSpec.describe Bookmark, type: :model do
-  include TagNameFactory
-
-  let(:tag) { nested_tag 3 }
-
-  let(:bookmark) { create :bookmark, tag_id: tag.id }
+  include UserSupport
+  include TagSupport
+  include BookmarkSupport
 
   it "shows url when rendered to string" do
     expect(bookmark.to_s).to eq bookmark.url

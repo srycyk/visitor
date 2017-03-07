@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def icon(name)
-    "<span class='glyphicon glyphicon-#{name}' aria-hidden='true'></span>"
+    " &nbsp; <span class='glyphicon glyphicon-#{name}' aria-hidden='true'></span> "
       .html_safe
   end
 

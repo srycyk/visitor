@@ -1,11 +1,11 @@
 
 class TagsController < TagTreeController
-  before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_tag, only: %i(show edit update destroy)
 
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.ordered.eager_parents.all
+    @tags = current_user.tags.ordered.eager_parents.all
 
     @tags = @tags.search(params[:q]) if params[:q].present?
   end
@@ -27,7 +27,7 @@ class TagsController < TagTreeController
   # POST /tags
   # POST /tags.json
   def create
-    @tag = Tag.new(tag_params)
+    @tag = current_user.tags.new(tag_params)
 
     respond_to do |format|
       if @tag.save
@@ -68,7 +68,7 @@ class TagsController < TagTreeController
   private
 
   def set_tag
-    @tag = Tag.find(params[:id])
+    @tag = current_user.tags.find(params[:id])
   end
 
   def tag_params

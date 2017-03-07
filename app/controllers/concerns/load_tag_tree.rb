@@ -10,7 +10,9 @@ module Concerns
     private
 
     def load_tag_tree
-      @tag_tree = Tag.tree.all
+      if user_signed_in?
+        @tag_tree = current_user.tags.tree.all
+      end
     end
   end
 end

@@ -1,14 +1,10 @@
 
 require 'rails_helper'
 
-require 'tag_name_factory'
-
 RSpec.describe ExportBookmark, type: :model do
-  let (:root_tag) { create :tag }
-
-  let (:tag) { create :tag, tag_id: root_tag.id }
-
-  let (:bookmark) { create :bookmark, tag_id: tag.id }
+  include UserSupport
+  include TagSupport
+  include BookmarkSupport
 
   let (:bookmarks) { [ bookmark, create(:bookmark, tag_id: tag.id) ] }
 
