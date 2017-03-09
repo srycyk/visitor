@@ -2,12 +2,12 @@
 class BookmarksController < TagTreeController
   before_action :set_tag
 
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :set_bookmark, only: %i(show edit update destroy)
 
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = BookmarkLister.new(@tag)
+    @bookmarks = BookmarkLister.new(@tag || current_user)
                                .(query: params[:q], by: params[:by]).to_a
   end
 
@@ -48,7 +48,6 @@ class BookmarksController < TagTreeController
   # PATCH/PUT /bookmarks/1.json
   def update
     respond_to do |format|
-      @bookmark.user = current_user # To check if changed tag is user's own
       if @bookmark.update(bookmark_params)
         format.html { redirect_to path_for_redirect, notice: "Bookmark, #@bookmark updated." }
 

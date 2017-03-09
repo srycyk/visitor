@@ -14,13 +14,15 @@ module Concerns
     end
 
     def set_type(type=nil)
-      self.btn_type = type || btn_type || options.delete(:btn_type) || type_to_btn_type || 'default'
+      self.btn_type = type || btn_type || options.delete(:btn_type) ||
+                                          type_to_btn_type || 'default'
 
       self
     end
 
     def set_size(size=nil)
-      self.btn_size = size || btn_size || options.delete(:btn_size) || self.class.btn_size || 'md'
+      self.btn_size = size || btn_size || options.delete(:btn_size) ||
+                                          self.class.btn_size || 'md'
 
       self
     end

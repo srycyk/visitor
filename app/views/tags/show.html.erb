@@ -12,23 +12,29 @@
     <%= @tag.title %>
   </dd>
 
-  <dt>Parents</dt>
+  <dt>
+    <%= pluralize @tag.branch.size, 'parent' %>
+  </dt>
   <dd>
-    <%= @tag.branch.map(&:info) * ' -> ' %>
+    <%= @tag.branch * ' -> ' %>
   </dd>
 
 
-  <dt>Direct children</dt>
+  <dt>
+    <%= pluralize @tag.tags_count, 'child' %>
+  </dt>
   <dd>
-    <%= @tag.tags_count %>
-    <%= ' &nbsp; - &nbsp; '.html_safe %>
-    <%= @tag.tags.map(&:info) * ', ' %>
+    <%= @tag.tags.to_a * ', ' %>
   </dd>
 
   <dt>Number of bookmarks</dt>
   <dd>
-    <%= @tag.bookmarks_count %>
+    <%= @tag.bookmarks_count || 0 %>
   </dd>
+
+  <dt>Age</dt>
+  <dd><%= time_ago_in_words @tag.created_at %></dd>
+
 
   <dt>Created</dt>
   <dd>

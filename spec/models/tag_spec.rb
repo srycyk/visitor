@@ -48,4 +48,18 @@ RSpec.describe Tag, type: :model do
 
     expect(extra_tag.tag).to eq tag.root
   end
+
+  it 'propigates user in children' do
+    expect(tag.user).to eq user
+  end
+
+  it 'disallows change to a parent tag owned by someone else' do
+    anothers_tag = create :tag
+
+    tag.tag = anothers_tag
+
+    tag.save
+
+    expect(tag.tag).to eq branch_tag
+  end
 end

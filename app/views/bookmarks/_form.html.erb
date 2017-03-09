@@ -12,9 +12,11 @@
 
   <%= text_area_field_group f, :description, rows: 4 %>
 
-  <%= select_field_group f, :tag_id, select_option_tags, cols: 6 %>
+  <%= select_field_group f, :tag_id, select_option_tags,
+                                     cols: 6,
+                                     locals: { title: 'Tag' } %>
 
-  <%= offset_row { submit_tag 'Save', class: submit_class } %>
+  <%= offset_row { f.submit class: submit_class } %>
 <% end %>
 
 <br>

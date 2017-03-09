@@ -1,33 +1,25 @@
 
-<%= render 'heading', title: "Forgotten password", prefix: '', subtitle: 'to send password reset instructions' %>
+<%= render 'heading', title: "Forgotten password", prefix: '',
+                      subtitle: 'to send password reset instructions' %>
  
 <% set_large_form! %>
 
-<%= form_for resource, form_atts.merge(as: resource_name, url: password_path(resource_name), method: :put) do |f| %>
+<% form_controls = form_atts.merge as: resource_name,
+                                   url: password_path(resource_name),
+                                   method: :put %>
+
+<%= form_for resource, form_controls do |f| %>
   <%= devise_error_messages! %>
 
   <%= f.hidden_field :reset_password_token %>
 
-  <%= text_field_group f, :password, type: :password, mandatory: true, autofocus: true %>
+  <%= text_field_group f, :password, type: :password,
+                                     mandatory: true,
+                                     autofocus: true %>
 
-  <%= text_field_group f, :password_confirmation, type: :password, mandatory: true %>
+  <%= text_field_group f, :password_confirmation, type: :password,
+                                                  mandatory: true %>
 
   <%= offset_row { submit_tag 'Change password', class: submit_class } %>
 <% end %>
 
-<!--
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-    <h3>Change your password</h3>
-    <%= devise_error_messages! %>
-    <%= f.hidden_field :reset_password_token %>
-    <div class="form-group">
-      <%= f.label :password, 'New password' %>
-        <%= f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control' %>
-      <%= f.label :password_confirmation, 'Confirm new password' %>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
-    </div>
-     <%= f.submit 'Change my Password', :class => 'button right' %>
-  <% end %>
-</div>
--->

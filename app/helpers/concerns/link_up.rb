@@ -88,7 +88,8 @@ module Concerns
     end
 
     def html_class
-      "btn btn-sm btn-link"
+      #"text-muted"
+      "btn btn-xs btn-link "
     end
 
     def set_control_opts

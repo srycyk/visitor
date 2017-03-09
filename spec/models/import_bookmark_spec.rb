@@ -24,7 +24,8 @@ RSpec.describe ImportBookmark, type: :model do
   def import_bookmark_update(csv_text='', tag=nil)
     ImportBookmark.new(csv_text: csv_text,
                        tag_id: tag.to_param,
-                       user: user).persistent!
+                       user: user)
+                  .persistent!
   end
 
   def self.browsers
@@ -77,7 +78,7 @@ RSpec.describe ImportBookmark, type: :model do
   end
 
   describe "update" do
-    let (:url) { "http://localhost:3000/tags/17/bookmarks" }
+    let (:url) { sample_url }
 
     let (:tag_name) { "level 1/name_tag" }
 

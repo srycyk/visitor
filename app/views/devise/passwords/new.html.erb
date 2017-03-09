@@ -1,9 +1,13 @@
 
-<%= render 'heading', title: "Forgotten password", prefix: '', subtitle: 'sends you reset instructions' %>
+<%= render 'heading', title: "Forgotten password", prefix: '',
+                      subtitle: 'sends you reset instructions' %>
 
 <% set_large_form! %>
 
-<%= form_for resource, form_atts.merge(as: resource_name, url: password_path(resource_name)) do |f| %>
+<% form_controls = form_atts.merge as: resource_name,
+                                   url: password_path(resource_name) %>
+
+<%= form_for resource, form_controls do |f| %>
   <%= devise_error_messages! %>
 
   <%= text_field_group f, :email, type: :email, mandatory: true, autofocus: true %>
@@ -25,17 +29,3 @@
   </div>
 </div>
 
-<!--
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
-    <h3>Forgot your password?</h3>
-    <p>We'll send password reset instructions.</p>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
-    </div>
-     <%= f.submit 'Reset Password', :class => 'button right' %>
-  <% end %>
-</div>
--->

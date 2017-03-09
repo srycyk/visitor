@@ -6,12 +6,9 @@
 <% if tag %>
   <div class="btn-group btn-group-justified" role="group" aria-label="bmark-btns">
     <% if action == 'index' %>
-      <% js = %{$('.bookmark').each(function() { window.open($(this).attr('href'), '_blank') })} %>
-
-      <% title = 'Bring up all listed sites in separate tabs' %>
-
-      <%= link_up_btn :js, '#', onclick: js + ' ; return false ',
-                            text: 'Open all sites', title: title %>
+      <%= link_up_btn :js, '#', onclick: open_tabs_js,
+                                text: 'Open all sites',
+                                title: open_tabs_title %>
 
       <%= link_up_btn :new, [:new, tag, :bookmark], remote %>
     <% else %>

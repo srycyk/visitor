@@ -15,7 +15,7 @@ RSpec.feature "Bookmarks", type: :feature do
 
       fill_in "bookmark_url", with: URL
 
-      click_button "Save"
+      click_button "Create Bookmark"
 
       expect(page).to have_content(/Bookmark.+#{URL}.+created/)
     end
@@ -25,7 +25,7 @@ RSpec.feature "Bookmarks", type: :feature do
 
       fill_in "bookmark_url", with: ''
 
-      click_button "Save"
+      click_button "Create Bookmark"
 
       expect(page).to have_content(/error.+url.+blank/i)
     end
@@ -37,7 +37,7 @@ RSpec.feature "Bookmarks", type: :feature do
 
       fill_in "bookmark_url", with: URL + '/path'
 
-      click_button "Save"
+      click_button "Update Bookmark"
 
       expect(page).to have_content(/Bookmark.+#{URL + '/path'}.+updated/)
     end
@@ -49,7 +49,7 @@ RSpec.feature "Bookmarks", type: :feature do
 
       select another_tag.to_s, from: "bookmark_tag_id"
 
-      click_button "Save"
+      click_button "Update Bookmark"
 
       expect(page).to have_content(/Bookmark.+#{bookmark}.+updated/)
       expect(page).to have_content(another_tag.to_path)
@@ -60,7 +60,7 @@ RSpec.feature "Bookmarks", type: :feature do
 
       fill_in "bookmark_title", with: 'x yy zzz'
 
-      click_button "Save"
+      click_button "Update Bookmark"
 
       expect(page).to have_content(/Bookmark.+#{bookmark}.+updated/)
       expect(page).to have_content('x yy zzz')
@@ -71,7 +71,7 @@ RSpec.feature "Bookmarks", type: :feature do
 
       fill_in "bookmark_url", with: ""
 
-      click_button "Save"
+      click_button "Update Bookmark"
 
       expect(page).to have_content(/error.+url.+blank/i)
     end

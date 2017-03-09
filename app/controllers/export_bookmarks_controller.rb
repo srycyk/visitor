@@ -1,7 +1,7 @@
 
 class ExportBookmarksController < TagTreeController
   def index
-    bookmarks = Bookmark.order_by(:tag_id)
+    bookmarks = current_user.bookmarks.order_by(:tag_id).eager_tags
 
     csv_text = ExportBookmark.new.(bookmarks)
 

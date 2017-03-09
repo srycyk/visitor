@@ -36,17 +36,18 @@ class BookmarkCsvLoader < Struct.new(:list, :tag_path, :user)
 
     url, title, description = atts.values_at :url, :title, :description
 
-    return unless url.present?
+    Bookmark.retain(url, tag, title, description)
 =begin
+    return unless url.present?
 #puts atts
 #tag = tag_path || atts[:tag] || 'imported'
 #puts "#{url} #{tag} #{title} #{description}"
 return
-=end
     Bookmark.find_or_create_by(url: url, tag: tag) do |bookmark|
       bookmark.title = title if title.present?
 
       bookmark.description = description if description.present?
     end
+=end
   end
 end

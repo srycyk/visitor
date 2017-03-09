@@ -7,6 +7,12 @@ class TagsController < TagTreeController
   def index
     @tags = current_user.tags.ordered.eager_parents.all
 
+    if params[:tag_id].present?
+      @tag = Tag.find_by id: params[:tag_id] # expands menu
+
+      @tags = @tags.where(tag_id: params[:tag_id])
+    end
+
     @tags = @tags.search(params[:q]) if params[:q].present?
   end
 

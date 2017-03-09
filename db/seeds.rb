@@ -1,20 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'tag_name_factory'
+=begin
+  ActiveRecord::Base.transaction do
+    user = CreateAdminService.new.call
 
-#user = CreateAdminService.new.call
-
-include TagNameFactory
-
-  Tag.transaction do
     Tag.delete_all
 
-    seed_tag_tree
+    Tag.create_tree user, :misc, :radio
+    Tag.create_tree user, :lang, :ruby
+    Tag.create_tree user, :lang, :js
+    Tag.create_tree user, :lang, :html
   end
+=end
 

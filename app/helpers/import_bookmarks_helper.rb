@@ -1,7 +1,7 @@
 
 module ImportBookmarksHelper
   def upload_help
-    'Upload a file from a browser export, or else a CSV file from an export on this site'
+    'Use a file from a browser export, or else a CSV file from an export here'
   end
 
   def text_help

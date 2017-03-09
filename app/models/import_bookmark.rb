@@ -14,19 +14,7 @@ class ImportBookmark
 
   validates :csv_text, presence: true, if: :persisted?
 
-  def persisted?
-    persistent
-  end
-  def to_param
-    persisted? ? '0' : nil
-  end
-
-  def persistent!(dtruth=true)
-    self.persistent = dtruth
-
-    self
-  end
-
+  # Converts uploaded file to CSV, if necessary
   def create
     uploaded_data = bookmark_file.read
     uploaded_file = bookmark_file.original_filename
@@ -38,8 +26,22 @@ class ImportBookmark
     self.csv_text = lines ? to_csv_text(lines) : uploaded_data
   end
 
+  # Adds Bookmark records from CSV data
   def update
     BookmarkCsvLoader.new(csv_text, tag_path, user).()
+  end
+
+  # For PUT method on update
+  def persisted?
+    persistent
+  end
+  def to_param
+    persisted? ? '0' : nil
+  end
+  def persistent!(dtruth=true)
+    self.persistent = dtruth
+
+    self
   end
 
   def reset

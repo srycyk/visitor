@@ -22,6 +22,14 @@ RSpec.describe Bookmark, type: :model do
     expect(bookmark.valid?).to be_falsey
   end
 
+  it "reverts to original if new tag owned by someone else" do
+    bookmark.tag = create :tag
+
+    bookmark.valid?
+
+    expect(bookmark.tag).to eq tag
+  end
+
   it "delegates to_path to corresponding tag" do
     expect(bookmark.to_path).to eq tag.to_path
   end

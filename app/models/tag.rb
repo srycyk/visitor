@@ -2,14 +2,13 @@
 class Tag < ApplicationRecord
   include UserForTag
 
+  include TagOwnerEnforcement
+
   belongs_to :tag, counter_cache: true, required: false
 
   has_many :tags, dependent: :destroy
 
   has_many :bookmarks, dependent: :destroy
-
-  #belongs_to :parent, required: false, class_name: 'Tag'
-  #has_many :children, class_name: 'Tag'
 
   before_create { self.title = name.humanize if title.blank? }
 
@@ -44,8 +43,6 @@ class Tag < ApplicationRecord
 
     destroy
   end
-=begin
-=end
 
   def expand
     @expanded ||= expansion
@@ -53,7 +50,7 @@ class Tag < ApplicationRecord
 
   def expansion(current=self)
     if current
-      expansion(current.tag) + [ current ]
+      expansion(current.tag) << current
     else
       []
     end
@@ -66,39 +63,21 @@ class Tag < ApplicationRecord
     expand[0..-2]
   end
 
+  def heading
+    title.presence or name.capitalize
+  end
+
+  def info
+    "#{heading}, #{tags_count || 0} below, #{bookmarks_count || 0} bookmarked"
+  end
+
   def to_tree(level=0, indent: '  ', eol: "\r\n")
     tags.inject indent * level + to_s(eol) do |acc, tag|
       acc << tag.to_tree(level + 1, indent: indent, eol: eol)
     end
   end
 
-  def info
-    "#{heading}, #{tags_count || 0} underneath, #{bookmarks_count || 0} bookmarked"
-  end
-
-  def heading
-    (title.presence || name).capitalize
-  end
-
-  def debug
-    "#{self} #{inspect} #{to_path}"
-  end
-
   class << self
-=begin
-    def mkpath(user, *path_names)
-      parent = nil
-
-      path_names.flatten.map do |name|
-        tag = find_or_create_by name: name, tag_id: parent
-
-        parent = tag.id
-
-        tag
-      end
-    end
-=end
-
     def create_tree(tag_or_user, *names)
       if name = names.pop
         create_tree(tag_or_user, *names).tags.find_or_create_by name: name.to_s
@@ -107,17 +86,14 @@ class Tag < ApplicationRecord
       end
     end
 
-    def obliterate!
-      roots.delete_all
+    def tree_includes(depth, assoc=:tags)
+      { assoc => depth <= 2 ? assoc : tree_includes(depth - 1, assoc) }
     end
 
+    private
 
     def search_fields
       Concerns::SearchFields.new(:name, :title, table: table_name)
-    end
-
-    def tree_includes(depth, assoc=:tags)
-      { assoc => depth <= 2 ? assoc : tree_includes(depth - 1, assoc) }
     end
   end
 end

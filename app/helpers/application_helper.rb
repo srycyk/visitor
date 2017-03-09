@@ -24,7 +24,8 @@ module ApplicationHelper
     date.to_s
   end
   def show_time(time)
-    time.to_s
+    #time.to_s
+    time.strftime "%c"
   end
 
 =begin

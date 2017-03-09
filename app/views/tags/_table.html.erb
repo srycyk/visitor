@@ -22,7 +22,9 @@
           <%= tag.name %>
         </td>
         <td>
-          <%= tag.title %>
+          <small>
+            <%= tag.title&.truncate(50) %>
+          </small>
         </td>
         <td>
           <%= tag.branch * '/' %>
@@ -30,9 +32,9 @@
         <td>
           <%= tag.tags_count %>
         </td>
-        <% text = pluralize(tag.bookmarks_count, 'bookmark') %>
         <td>
-          <%= link_up :list, [tag, :bookmarks], text: text %>
+          <%= link_up :list, [tag, :bookmarks],
+                             text: site_count(tag, 'bookmark') %>
         </td>
         <td>
           <%= link_up_icon :show, tag %>

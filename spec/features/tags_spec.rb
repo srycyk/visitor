@@ -12,7 +12,7 @@ RSpec.feature "Tags", type: :feature do
 
       fill_in "tag_name", with: "price_tag"
 
-      click_button "Save"
+      click_button "Create Tag"
 
       expect(page).to have_content(/Tag.+price_tag.+created/)
     end
@@ -22,7 +22,7 @@ RSpec.feature "Tags", type: :feature do
 
       fill_in "tag_name", with: "dog_tag"
 
-      click_button "Save"
+      click_button "Create Tag"
 
       expect(page).to have_content(/Tag.+dog_tag.+created/)
       expect(page).to have_content(tag.to_path)
@@ -33,7 +33,7 @@ RSpec.feature "Tags", type: :feature do
 
       fill_in "tag_name", with: ""
 
-      click_button "Save"
+      click_button "Create Tag"
 
       expect(page).to have_content(/error.+name.+blank/i)
     end
@@ -42,28 +42,22 @@ RSpec.feature "Tags", type: :feature do
   feature "existing tag" do
     scenario "changes name" do
       visit edit_tag_path tag
-#puts tag.inspect
-#save_and_open_page
 
       fill_in "tag_name", with: "price_tag"
 
-      click_button "Save"
+      click_button "Update Tag"
 
       expect(page).to have_content(/Tag.+price_tag.+updated/)
     end
 
-#save_and_open_page
-#puts another_tag.debug
-#puts tag.debug
-#puts root_tag.debug
     scenario "changes parent tag" do
-      another_tag = create :tag
+      another_tag = create :tag, user: user
 
       visit edit_tag_path tag
 
       select another_tag.to_s, from: "tag_tag_id"
 
-      click_button "Save"
+      click_button "Update Tag"
 
       expect(page).to have_content(/Tag.+#{tag}.+updated/)
       expect(page).to have_content(another_tag.to_path)
@@ -74,7 +68,7 @@ RSpec.feature "Tags", type: :feature do
 
       fill_in "tag_name", with: ""
 
-      click_button "Save"
+      click_button "Update Tag"
 
       expect(page).to have_content(/error.+name.+blank/i)
     end

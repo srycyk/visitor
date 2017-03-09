@@ -3,7 +3,7 @@
 
 <dl class="dl-horizontal">
   <dt>Url</dt>
-  <dd><%= bookmark.url %></dd>
+  <dd><%= link_to bookmark.url, bookmark.url, target: '_blank' %></dd>
 
   <dt>Title</dt>
   <dd><%= bookmark.title %></dd>
@@ -13,6 +13,9 @@
 
   <dt>Tag</dt>
   <dd><%= bookmark.tag.to_path %></dd>
+
+  <dt>Age</dt>
+  <dd><%= time_ago_in_words bookmark.created_at %></dd>
 
   <dt>Created</dt>
   <dd><%= show_time bookmark.created_at %></dd>

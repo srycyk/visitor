@@ -7,7 +7,19 @@ class User < ApplicationRecord
 
   has_many :tags, dependent: :destroy
 
+  has_many :bookmarks, through: :tags
+
+  before_create :derive_name
+
   def to_s
-    email
+    name.presence or email
+  end
+
+  private
+
+  def derive_name
+    if name.blank?
+      self.name = email[0, email.index('@')].humanize
+    end
   end
 end

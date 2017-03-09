@@ -2,8 +2,8 @@
 class BookmarkLister
   attr_accessor :relation
 
-  def initialize(tag)
-    self.relation = tag ? tag.bookmarks : Bookmark.limit(200)
+  def initialize(tag_or_user)
+    self.relation = tag_or_user.bookmarks.limit(200)
   end
 
   def call(query: nil, by: nil)

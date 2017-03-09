@@ -53,6 +53,7 @@
     files += Dir[SPEC + "models/**/*.rb"].grep(/[^~]$/).sort
     files += Dir[SPEC + "features/**/*.rb"].grep(/[^~]$/).sort
     files += Dir[SPEC + "factories/**/*.rb"].grep(/[^~]$/).sort
+    files += Dir[SPEC + "support/*_support.rb"].grep(/[^~]$/).sort
     #files += Dir[SPEC + "fixtures/*.*"].grep(/[^~]$/).sort
 
     if verbose

@@ -1,7 +1,7 @@
 
-<% set_large_form! %>
-
 <%= render 'heading', title: 'Import Bookmarks' %>
+
+<% set_large_form! %>
 
 <%= form_for @import_bookmark, inline_form_atts.merge(multipart: true) do |f| %>
   <%= render 'error_messages', model: @import_bookmark %>
@@ -22,9 +22,9 @@
                                           help: text_help %>
 
   <%= select_field_group f, :tag_id, select_option_tags,
-                                     locals: { title: 'Tag', help: tag_help },
-                                     blank: true %>
+                            blank: true,
+                            locals: { title: 'Tag', help: tag_help } %>
 
-  <%= offset_row { submit_tag 'Import', class: submit_class } %>
+  <%= offset_row { submit_tag 'Import CSV Text', class: submit_class } %>
 <% end %>
 

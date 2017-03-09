@@ -11,7 +11,7 @@
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-<%= dom_id tag %>">
     <li>
-      <%= link_to site_count(tag), [tag, :bookmarks] %>
+      <%= link_to "New tag under #{tag}", [:new, :tag, tag_id: tag] %>
     </li>
     <li>
       <%= link_to "Edit tag #{tag}", [:edit, tag] %>
@@ -21,13 +21,21 @@
                                        data: { confirm: 'Are you sure?' } %>
     </li>
     <li>
-      <%= link_to "New tag under #{tag}", [:new, :tag, tag_id: tag] %>
-    </li>
-    <li>
       <%= link_to "Show tag #{tag}", tag %>
     </li>
+    <% if tag.tags_count || 0 > 0 %>
+      <li>
+        <%= link_to "List tags under #{tag}", [:tags, tag_id: tag.to_param] %>
+      </li>
+    <% end %>
+
+    <li role="separator" class="divider"></li>
+
     <li>
       <%= link_to "New bookmark under #{tag}", [:new, tag, :bookmark] %>
+    </li>
+    <li>
+      <%= link_to site_count(tag), [tag, :bookmarks] %>
     </li>
   </ul>
 </span>

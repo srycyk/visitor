@@ -19,8 +19,6 @@ RSpec.describe ExportBookmark, type: :model do
   it "handles empty list" do
     export_bookmark = ExportBookmark.new
 
-    line_match = /#{bookmark.url},#{bookmark.to_path}/
-
     expect(export_bookmark.([])).to be_blank
   end
 end
