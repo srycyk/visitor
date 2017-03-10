@@ -20,22 +20,28 @@ module ApplicationHelper
   def show_date(date)
     date = date.to_date
 
-    #date.strftime ""
     date.to_s
   end
+
   def show_time(time)
-    #time.to_s
     time.strftime "%c"
   end
 
 =begin
   def indent(level)
     if level > 1
-      #(" &nbsp; " * level + icon('menu-right') + ' ').html_safe
       (" &nbsp; " * level + '&#155; ').html_safe
     else
       ' '
     end
+  end
+
+  def switch_text(dtruth, yes='Yes', no='No')
+    dtruth ? yes : no
+  end
+
+  def switch_icon(dtruth)
+    icon dtruth ? 'tick' : 'cross'
   end
 =end
 end

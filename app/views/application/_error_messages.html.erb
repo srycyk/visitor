@@ -4,12 +4,13 @@
     <div class="panel-heading">
       <h3 class="panel-title">
         <%= pluralize(model.errors.count, "error") %>
-        prevented this <%= model.class.name.underscore %> from being saved
+        prevented this, <%= model.class.name.underscore %>,
+        record from being saved
       </h3>
     </div>
 
     <div class="panel-body">
-      <ul>
+      <ul class="list-unstyled">
        <% model.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
@@ -17,3 +18,4 @@
     </div>
   </div>
 <% end %>
+

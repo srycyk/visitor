@@ -1,10 +1,12 @@
 
 <% tag ||= nil %>
 <% bookmark ||= nil %>
+
 <% action ||= params[:action] %>
 
 <% if tag %>
-  <div class="btn-group btn-group-justified" role="group" aria-label="bmark-btns">
+  <div class="btn-group btn-group-justified"
+       role="group" aria-label="bmark-btns">
     <% if action == 'index' %>
       <%= link_up_btn :js, '#', onclick: open_tabs_js,
                                 text: 'Open all sites',

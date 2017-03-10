@@ -10,6 +10,8 @@ class Tag < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
 
+  before_validation :clean_name
+
   before_create { self.title = name.humanize if title.blank? }
 
   scope :ordered, -> { order :name }
@@ -38,6 +40,7 @@ class Tag < ApplicationRecord
     expand.include? candidate_tag
   end
 
+  # Had problems with self-referential dependent: :destroy
   def expunge
     tags.each {|tag| tag.expunge }
 
@@ -77,10 +80,17 @@ class Tag < ApplicationRecord
     end
   end
 
+  private
+
+  def clean_name
+    self.name = name.tr '/', '-' if name.index '/'
+  end
+
   class << self
     def create_tree(tag_or_user, *names)
       if name = names.pop
-        create_tree(tag_or_user, *names).tags.find_or_create_by name: name.to_s
+        create_tree(tag_or_user, *names)
+          .tags.find_or_create_by(name: name.to_s)
       else
         tag_or_user
       end

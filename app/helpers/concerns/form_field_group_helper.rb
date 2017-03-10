@@ -46,25 +46,11 @@ module Concerns
       render args, &block
     end
 
-    def submit_class(size=nil)
-      size = form_field_settings.field_size unless size
-
-      "btn btn-primary btn-#{size}"
-    end
-
     def text_field_group(form, name, locals={})
       field_group name, locals do
         form.text_field name, form_control.merge(locals)
       end
     end
-
-=begin
-    def password_field_group(form, name, locals={})
-      field_group name, locals do
-        form.password_field name, form_control.merge(locals)
-      end
-    end
-=end
 
     def text_area_field_group(form, name, locals={})
       field_group name, {field_size: 'md'}.merge(locals) do
@@ -99,6 +85,12 @@ module Concerns
       field_group name, locals do
         form.select name, select_options, {include_blank: blank}, form_control
       end
+    end
+
+    def submit_class(size=nil)
+      size = form_field_settings.field_size unless size
+
+      "btn btn-primary btn-#{size}"
     end
 
 =begin

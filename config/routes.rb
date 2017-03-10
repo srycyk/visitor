@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :tags do
-    resources :bookmarks #, shallow: true
+    resources :bookmarks
   end
 
   resources 'bookmarks', only: %i(index)

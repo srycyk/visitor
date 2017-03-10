@@ -8,7 +8,8 @@ class BookmarksController < TagTreeController
   # GET /bookmarks.json
   def index
     @bookmarks = BookmarkLister.new(@tag || current_user)
-                               .(query: params[:q], by: params[:by]).to_a
+                               .(query: params[:q], by: params[:by])
+                               .to_a
   end
 
   # GET /bookmarks/1

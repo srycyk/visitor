@@ -30,7 +30,7 @@
           <small><%= bookmark.title %></small>
         </td>
         <td>
-          <small><%= (bookmark.description || '').truncate(140) %></small>
+          <small><%= bookmark.description&.truncate(140) %></small>
         </td>
         <td>
           <em class="small"><%= show_date bookmark.updated_at %></em>

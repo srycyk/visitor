@@ -9,6 +9,7 @@
     <%= tag.heading %>
     <span class="caret"></span>
   </button>
+
   <ul class="dropdown-menu" aria-labelledby="dropdown-<%= dom_id tag %>">
     <li>
       <%= link_to "New tag under #{tag}", [:new, :tag, tag_id: tag] %>

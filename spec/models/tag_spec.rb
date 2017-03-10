@@ -5,6 +5,20 @@ RSpec.describe Tag, type: :model do
   include UserSupport
   include TagSupport
 
+  it "needs name" do
+    tag.name = ''
+
+    expect(tag.valid?).to be_falsey
+  end
+
+  it "subsitutes '/' in name" do
+    tag.name = 'a/b'
+
+    tag.valid?
+
+    expect(tag.name).to eq 'a-b'
+  end
+
   it "expands path" do
     expect(tag.to_path).to match /level 1.+level 2.+level 3/
   end

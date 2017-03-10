@@ -3,7 +3,8 @@
 <% action ||= params[:action] %>
 
 <div>
-  <div class="btn-group btn-group-justified" role="group" aria-label="tag-btns">
+  <div class="btn-group btn-group-justified"
+       role="group" aria-label="tag-btns">
     <% if tag %>
       <%= link_up_btn :back, [tag, :bookmarks] %>
     <% else %>

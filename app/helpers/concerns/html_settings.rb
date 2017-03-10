@@ -21,12 +21,6 @@ module Concerns
       default_form_atts classes, "form-inline"
     end
 
-=begin
-    def search_form_atts(classes='')
-      { method: :get, class: "form-inline #{classes}" }
-    end
-=end
-
     def offset_row(offset_cols=nil)
       offset_cols ||= form_field_settings.label_cols
 
@@ -43,12 +37,6 @@ module Concerns
     def sub_heading(text=' &nbsp; '.html_safe, classes='')
       content_tag :h3, class: "text-center text-muted #{classes}" do
         content_tag :span, content_tag(:em, text)
-      end
-    end
-
-    def back_button(path_back: nil, text: 'Back', size: 'md')
-      if path_back
-        link_to 'Back', path_back, class: "btn btn-default btn-#{size}"
       end
     end
 =end
