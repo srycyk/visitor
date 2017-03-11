@@ -27,6 +27,8 @@
       <% end %>
     <% end %>
 
+    <%= link_up_btn :new, [:new, :tag, tag_id: tag],
+                          text: "New tag under #{tag}" %>
   </div>
 <% end %>
 

@@ -21,6 +21,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '3.3.6'
 gem 'devise'
 gem 'pg'
+gem 'sqlite3'
 
 group :development, :test do
   gem 'byebug', platform: :mri
