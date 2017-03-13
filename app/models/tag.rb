@@ -80,6 +80,10 @@ class Tag < ApplicationRecord
     end
   end
 
+  def children?
+    tags_count || 0 > 0
+  end
+
   private
 
   def clean_name

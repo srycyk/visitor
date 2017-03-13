@@ -5,12 +5,10 @@
           aria-haspopup="true" aria-expanded="true"
           title="Actions for <%= tag.info %>">
     <%= icon 'list' %>
-    &nbsp;
-    <%= tag.heading %>
-    <span class="caret"></span>
   </button>
 
   <ul class="dropdown-menu" aria-labelledby="dropdown-<%= dom_id tag %>">
+    <li class="dropdown-header"><%= icon 'tag' %> <%= tag.heading %></li>
     <li>
       <%= link_to "New tag under #{tag}", [:new, :tag, tag_id: tag] %>
     </li>
@@ -24,9 +22,9 @@
     <li>
       <%= link_to "Show tag #{tag}", tag %>
     </li>
-    <% if tag.tags_count || 0 > 0 %>
+    <% if tag.children? %>
       <li>
-        <%= link_to "List tags under #{tag}", [:tags, tag_id: tag.to_param] %>
+        <%= link_to "List tags under #{tag}", [:tags, tag_id: tag] %>
       </li>
     <% end %>
 

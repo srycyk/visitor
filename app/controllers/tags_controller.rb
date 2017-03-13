@@ -8,7 +8,8 @@ class TagsController < TagTreeController
     @tags = current_user.tags.ordered.eager_parents
 
     if params[:tag_id].present?
-      @tag = Tag.find_by id: params[:tag_id] # to force menu expansion
+      # forces menu expansion and subtitle
+      @tag = Tag.find_by id: params[:tag_id]
 
       @tags = @tags.where(tag_id: params[:tag_id])
     end

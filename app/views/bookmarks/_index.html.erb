@@ -2,9 +2,7 @@
 <% locals = { title: 'Bookmarks', subtitle: tag_title(@tag) } %>
 
 <%= render layout: 'heading', locals: locals  do %>
-  <em class='small'>
-   Revisit sites on this page
-  </em>
+  <em class='small'>Revisit sites on this page</em>
 <% end %>
 
 <%= render 'table', tag: @tag, bookmarks: @bookmarks %>

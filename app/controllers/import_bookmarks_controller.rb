@@ -10,6 +10,10 @@ class ImportBookmarksController < TagTreeController
   def create
     @import_bookmark.create if @import_bookmark.valid?
 
+    if (csv_text = @import_bookmark.csv_text).present?
+      flash.now[:notice] = "Up to #{csv_text.count "\n"} CSV records found"
+    end
+
     render :index
   end
 

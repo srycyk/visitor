@@ -1,5 +1,9 @@
 
-<%= render 'heading', title: 'Import Bookmarks' %>
+<% locals = { title: 'Import Bookmarks', subtitle: "Add URL's in bulk" } %>
+
+<%= render layout: 'heading', locals: locals do %>
+  <em class='small'>Use an import from Firefox or Chrome</em>
+<% end %>
 
 <% set_large_form! %>
 

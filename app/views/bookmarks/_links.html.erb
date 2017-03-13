@@ -27,6 +27,11 @@
       <% end %>
     <% end %>
 
+    <% if tag.children? %>
+      <%= link_up_btn :list, [:tags, tag_id: tag],
+                             text: "List tags under #{tag}" %>
+    <% end %>
+
     <%= link_up_btn :new, [:new, :tag, tag_id: tag],
                           text: "New tag under #{tag}" %>
   </div>

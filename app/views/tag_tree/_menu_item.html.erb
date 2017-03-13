@@ -2,15 +2,21 @@
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="head-<%= dom_id tag %>">
       <h6 class="panel-title">
-        <a role="button" data-toggle="collapse"
-                         data-parent="#menu-<%= level %>"
-                         href="#panel-<%= dom_id tag %>"
-                         aria-controls="<%= dom_id tag %>"
-                         title="<%= pluralize tag.tags_count, 'child' %>">
+        <%= render 'tags/actions', tag: tag %>
 
+        <% if tag.children? %>
+          <a role="button" data-toggle="collapse"
+                           data-parent="#menu-<%= level %>"
+                           href="#panel-<%= dom_id tag %>"
+                           aria-controls="<%= dom_id tag %>"
+                           title="<%= pluralize tag.tags_count, 'child' %>">
             <%= tag %>
             <span class="caret"></span>
-        </a>
+          </a>
+        <% else %>
+          <%= tag %>
+        <% end %>
+
         <span class="pull-right">
           <%= link_to [tag, :bookmarks], title: site_count(tag) do %>
             <span class="badge"><%= tag.bookmarks_count or '0' %></span>
@@ -19,17 +25,17 @@
       </h6>
     </div>
 
-    <% receiver = @bookmark || @tag %>
+    <% if tag.children? %>
+      <% receiver = @bookmark || @tag %>
 
-    <div id="panel-<%= dom_id tag %>"
-         class="panel-collapse collapse <%= in_path? tag, receiver %>"
-         role="tabpanel" aria-labelledby="head-<%= dom_id tag %>">
+      <div id="panel-<%= dom_id tag %>"
+           class="panel-collapse collapse <%= in_path? tag, receiver %>"
+           role="tabpanel" aria-labelledby="head-<%= dom_id tag %>">
 
-      <div class="panel-body">
-        <%= render 'tags/actions', tag: tag %>
-
-        <%= render 'tag_tree/menu_panel', tags: tag.tags, level: level %>
+        <div class="panel-body">
+          <%= render 'tag_tree/menu_panel', tags: tag.tags, level: level %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 

@@ -1,26 +1,25 @@
   
 <% if user_signed_in? %>
   <li class="<%= active %i(new tag) %>">
-    <% title = 'Create a top level tag' %>
-    <%= link_to 'New tag', %i(new tag), title: title %>
+    <%= link_to 'New tag', %i(new tag), title: title(:new_tag_top) %>
   </li>
   <li class="<%= active :tags %>">
-    <% title = 'List all tags' %>
-    <%= link_to 'Tags', :tags, title: title %>
+    <%= link_to 'Tags', :tags, title: title(:list_tags) %>
   </li>
-  <li class="<%= active :bookmarks %>">
-    <% title = 'List all bookmarks' %>
-    <%= link_to 'Bookmarks', :bookmarks, title: title %>
+  <li class="<%= active controller: :bookmarks %>">
+    <%= link_to 'Bookmarks', :bookmarks, title: title(:list_bookmarks) %>
   </li>
   <li class="<%= active :import_bookmarks %>">
-    <% title = 'Upload bookmark files from browsers, or from CSV files' %>
-    <%= link_to 'Import', :import_bookmarks, title: title %>
+    <%= link_to 'Import', :import_bookmarks, title: title(:upload_bookmarks) %>
   </li>
   <li class="<%= active :export_bookmarks %>">
-    <% title = 'Download all current bookmarks as CSV File' %>
-    <%= link_to 'Export', :export_bookmarks, title: title %>
+    <%= link_to 'Export', :export_bookmarks, title: title(:download_bookmarks) %>
   </li>
 <% else %>
-  <li><%= link_to 'Sign in', new_user_session_path %></li>
-  <li><%= link_to 'Sign up', new_user_registration_path %></li>
+  <li>
+    <%= link_to 'Sign in', new_user_session_path, title: title(:sign_in) %>
+  </li>
+  <li>
+    <%= link_to 'Sign up', new_user_registration_path, title: title(:sign_up) %>
+  </li>
 <% end %>

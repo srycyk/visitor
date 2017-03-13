@@ -9,22 +9,35 @@ module ApplicationHelper
   end
 
   def icon(name)
-    " &nbsp; <span class='glyphicon glyphicon-#{name}' aria-hidden='true'></span> "
+    " <span class='glyphicon glyphicon-#{name}' aria-hidden='true'></span> "
       .html_safe
   end
 
   def active(page)
+    # Workround to avoid error with Devise
+    return '' unless  search_form_controller? params['controller']
+
     current_page?(page) ? 'active' : ''
   end
 
   def show_date(date)
-    date = date.to_date
-
-    date.to_s
+    date.to_date.to_s
   end
 
   def show_time(time)
     time.strftime "%c"
+  end
+
+  def title(name)
+    { sign_in: 'For registered, or returning, users',
+      sign_up: 'For new users',
+      new_tag_top: 'Create a top level tag',
+      new_tag: 'Create a tag',
+      list_tags: 'List all tags',
+      list_bookmarks: 'List all bookmarked sites',
+      upload_bookmarks: 'Upload bookmarks from CSV, Firefox or Chrome',
+      download_bookmarks: 'Download all bookmarks as CSV File',
+    }[name.to_sym] or name.to_s.humanize
   end
 
 =begin
