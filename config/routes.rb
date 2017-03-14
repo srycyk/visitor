@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :export_bookmarks, only: %i(index)
 
   get 'help', to: 'help#index'
+  get 'demo', to: 'help#demo'
 
   root to: 'help#index'
 end

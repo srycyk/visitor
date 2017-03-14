@@ -1,7 +1,7 @@
 Site Visitor
 ============
 
-A small (three table) Rails' website for bookmarking a user's URL's.
+A small (three table) Rails' site for bookmarking a registered user's URL's.
 
 There is an introduction on the landing page,
 in *app/views/help/index.html.erb*
@@ -17,4 +17,5 @@ This application requires:
 - Rails 5.0.2
 - Twitter Bootstrap 3.3.6
 - PostgreSQL and SQLite - should also work with others
+
 

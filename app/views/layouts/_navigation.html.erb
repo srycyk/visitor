@@ -23,9 +23,18 @@
       <ul class="nav navbar-nav navbar-right">
         <%= render 'layouts/nav_links' %>
 
-         <li role="separator" class="divider"> &nbsp; </li>
+        <li role="separator" class="divider"> &nbsp; </li>
 
-        <%= render 'layouts/nav_links_auth_dropdown' %>
+        <% if demo_user? %>
+          <li>
+            <%= link_to 'End demo', destroy_user_session_path,
+                                    method: 'delete',
+                                    confirm: 'Really log out?',
+                                    title: title(:end_demo) %>
+          </li>
+        <% else %>
+          <%= render 'layouts/nav_links_auth_dropdown' %>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -5,7 +5,7 @@ class ExportBookmarksController < TagTreeController
 
     csv_text = ExportBookmark.new.(bookmarks)
 
-    send_data csv_text, type: 'text/csv', file_name: "bookmarks.csv"
+    send_data csv_text, type: 'text/csv', filename: "bookmarks.csv"
   end
 
   private

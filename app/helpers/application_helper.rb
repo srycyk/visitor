@@ -31,6 +31,8 @@ module ApplicationHelper
   def title(name)
     { sign_in: 'For registered, or returning, users',
       sign_up: 'For new users',
+      demo: 'Log in as demo user',
+      end_demo: 'Log out of this demonstration',
       new_tag_top: 'Create a top level tag',
       new_tag: 'Create a tag',
       list_tags: 'List all tags',
