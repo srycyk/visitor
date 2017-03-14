@@ -18,4 +18,3 @@ This application requires:
 - Twitter Bootstrap 3.3.6
 - PostgreSQL and SQLite - should also work with others
 
-
