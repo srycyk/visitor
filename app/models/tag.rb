@@ -81,7 +81,7 @@ class Tag < ApplicationRecord
   end
 
   def children?
-    tags_count || 0 > 0
+    (tags_count || 0) > 0
   end
 
   private
