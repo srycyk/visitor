@@ -1,5 +1,5 @@
 
-<% if search_form_controller? params['controller'] %>
+<% if search_form_controller? %>
   <%= form_tag({action: :index}, method: :get,
                                  class: "navbar-form navbar-left",
                                  role: "search") do %>

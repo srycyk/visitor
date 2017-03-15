@@ -6,9 +6,11 @@
       This will irretrieveably delete all of your tags and bookmarks.
     </p>
     <p class='text-muted'>
-      You can take a CSV back-up first by using the <em>Export</em> link.
+      You can take a CSV back-up first by clicking:
+      <%= link_to 'Export', :export_bookmarks %>.
     </p>
     <p>
+      <br>
       &nbsp;
       <%= link_up_btn :delete, registration_path(resource_name),
                                text: "Zap my Account" %>

@@ -2,10 +2,10 @@
 module ApplicationHelper
   include Concerns::HtmlSettings
 
-  def search_form_controller?(controller)
-    controllers = %w(tags bookmarks import_bookmarks export_bookmarks)
+  SEARCH_CONTROLLERS = %w(tags bookmarks import_bookmarks export_bookmarks)
 
-    controllers.include? params['controller']
+  def search_form_controller?
+    SEARCH_CONTROLLERS.include? params['controller']
   end
 
   def icon(name)
@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def active(page)
     # Workround to avoid error with Devise
-    return '' unless  search_form_controller? params['controller']
+    return '' unless search_form_controller?
 
     current_page?(page) ? 'active' : ''
   end
