@@ -16,7 +16,7 @@ module UserSupport
                        name: Faker::Name.name,
                        password: "password"
 
-    user.confirm
+    user.confirm if user.respond_to? :confirm
 
     user
   end

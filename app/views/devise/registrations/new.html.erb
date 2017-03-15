@@ -12,8 +12,10 @@
 
   <%= text_field_group f, :name %>
 
+  <% help = 'Email confirmation is currently switched off' %>
   <%= text_field_group f, :email, type: :email, mandatory: true,
-                                                autofocus: true %>
+                                                autofocus: true,
+                                                help: help %>
 
   <%= text_field_group f, :password, type: :password, mandatory: true %>
 
