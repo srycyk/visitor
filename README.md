@@ -16,8 +16,9 @@ This application requires:
 
 - Ruby 2.3.3
 - Rails 5.0.2
-- Twitter Bootstrap 3.3.6
 - PostgreSQL and SQLite - should also work with others
+- Twitter Bootstrap 3.3.6
+- Rspec 3.5.4
 
 Comments on the Internals
 -------------------------
@@ -37,27 +38,28 @@ etc..
 
 In the directories, **app/views/application/** and
 **app/helpers/concerns/**, there are a number of shared
-utilities that bring constistency across the site,
+utilities that bring consistency across the site,
 and significantly reduce code duplication, allowing 
-global changes, in mass, to be made in one stroke.
+global changes to be propagated in a single stroke.
 
-These are most useful in  the views, notably,
-for the HTML forms, headings, links and buttons.
+These are chiefly for the views,
+*(where code repetition is often most rife)*,
+notably, the HTML forms, headings, links and buttons.
 
 The various HTML input types are dealt with in
 *app/helpers/concerns/form_field_group_helper.rb*.
 
 There are some other standardised Bootstrap controls for
-*form_for* attributes and tables in
+*form_for* attributes and tables, in
 *app/helpers/concerns/html_settings.rb*.
 
 There are three preset form sizes controlled by the
 class, *app/helpers/concerns/form_field_settings.rb*.
 
 The links, (which can appear as text, buttons or icons),
-are called from the helper methods in
+are called from the helper methods, in
 *app/helpers/concerns/link_up_helper.rb*.
-Perhaps this code needs a further refactoring,
+Perhaps this code needs further refactoring,
 but most of it is okay.
 
 As for the model classes.
