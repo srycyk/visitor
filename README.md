@@ -1,7 +1,8 @@
 Site Visitor
 ============
 
-A small (three table) Rails' site for bookmarking a registered user's URL's.
+A small (three table) Rails' site
+for bookmarking a registered user's URL's.
 
 There is an introduction on the landing page,
 in *app/views/help/index.html.erb*
@@ -23,8 +24,8 @@ Comments on the Internals
 
 For Rails developers there may be a few items of interest.
 
-These are general purpose components that reduce the need
-to use external gems, such as SimpleForm, Bootstrap helpers,
+These are general purpose components designed to reduce the
+number of external gems, such as SimpleForm, Bootstrap helpers,
 etc..
 
 > Using such gems usually bloats your code base with unwanted
@@ -37,7 +38,8 @@ etc..
 In the directories, **app/views/application/** and
 **app/helpers/concerns/**, there are a number of shared
 utilities that bring constistency across the site,
-and massively reduce code duplication.
+and significantly reduce code duplication, allowing 
+global changes, in mass, to be made in one stroke.
 
 These are most useful in  the views, notably,
 for the HTML forms, headings, links and buttons.
@@ -60,11 +62,6 @@ but most of it is okay.
 
 As for the model classes.
 
-The *Tag* class may be of use if you happen to need
-tree-like tagging, but this is uncommon.
-It uses recursion heavily, as it's the most elegant
-way of processing b-trees.
-
 The class *ImportBookmark* acts as a Form Object
 which handles the **create** and **update** actions.
 It includes a few methods to induce Rails to treat it
@@ -75,4 +72,9 @@ There is also a utility class to allow multiple fields
 in a model to be queried with the same search string.
 It is in *app/models/concerns/search_fields.rb*, and
 used in the *Tag* and *Bookmark* classes.
+
+The *Tag* class may be of use if you happen to need
+tree-like tagging, but this is uncommon.
+It uses recursion heavily, as it's the most elegant
+way of processing b-trees.
 
