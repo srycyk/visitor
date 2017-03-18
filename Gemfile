@@ -28,27 +28,29 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
+  gem 'web-console', '>= 3.3.0'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry-rails'
+  gem 'pry-rescue'
+
   gem 'hub', :require=>nil
   gem 'rails_layout'
-  gem 'spring-commands-rspec'
 end
 
 group :development, :test do
   gem 'dotenv-rails'
+
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'pry-rails'
-  gem 'pry-rescue'
 end
 
 group :test do
