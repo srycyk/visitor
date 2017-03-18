@@ -57,17 +57,19 @@ There are three preset form sizes controlled by the
 class, *app/helpers/concerns/form_field_settings.rb*.
 
 The links, (which can appear as text, buttons or icons),
-are called from the helper methods, in
+are called from the helper methods in
 *app/helpers/concerns/link_up_helper.rb*.
 Perhaps this code needs further refactoring,
 but most of it is okay.
 
-As for the model classes.
+As for the model classes,
+*(which, if the application were bigger,
+would be moved into separate modules)*.
 
-The class *ImportBookmark* acts as a Form Object
+The class, *ImportBookmark*, acts as a Form Object
 which handles the **create** and **update** actions.
 It includes a few methods to induce Rails to treat it
-as if it is persistent,
+as if it's persistent,
 *there may well be a neater way of achieving this*.
 
 There is also a utility class to allow multiple fields
