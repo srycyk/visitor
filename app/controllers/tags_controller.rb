@@ -5,16 +5,12 @@ class TagsController < TagTreeController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = current_user.tags.ordered.eager_parents
+    lister = TagLister.new(current_user)
 
-    if params[:tag_id].present?
-      # forces menu expansion and subtitle
-      @tag = Tag.find_by id: params[:tag_id]
+    @tags = lister.(query: params[:q], tag_id: params[:tag_id])
 
-      @tags = @tags.where(tag_id: params[:tag_id])
-    end
-
-    @tags = @tags.search(params[:q]) if params[:q].present?
+    # @tag forces menu expansion and a subtitle to appear
+    @tag = lister.tag
   end
 
   # GET /tags/1

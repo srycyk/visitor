@@ -9,6 +9,26 @@ RSpec.feature "Bookmarks", type: :feature do
 
   before { signin(user.email, user.password) }
 
+  feature "index listing" do
+    scenario "shows all" do
+      bookmark
+
+      visit bookmarks_path
+
+      expect(page).to have_content(/Url.+#{bookmark}/)
+    end
+
+    scenario "searching" do
+      another_bookmark = create :bookmark, tag_id: tag.id
+
+      visit bookmarks_path q: bookmark.url[3..-3]
+
+      expect(page).to have_content(/Url.+#{bookmark}/)
+
+      expect(page).not_to have_content(/Url.+#{another_bookmark}/)
+    end
+  end
+
   feature "new bookmark" do
     scenario "created" do
       visit new_tag_bookmark_path tag

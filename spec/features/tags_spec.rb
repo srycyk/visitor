@@ -6,6 +6,24 @@ RSpec.feature "Tags", type: :feature do
 
   before { signin(user.email, user.password) }
 
+  feature "index listing" do
+    scenario "shows all" do
+      tag
+
+      visit tags_path
+
+      expect(page).to have_content(/Name.+#{tag}/)
+    end
+
+    scenario "searching" do
+      visit tags_path q: tag.tag.name
+
+      expect(page).to have_content(/Name.+#{tag.tag}/)
+
+      expect(page).not_to have_content(/Name.+#{tag}/)
+    end
+  end
+
   feature "new tag" do
     scenario "creates root" do
       visit new_tag_path
