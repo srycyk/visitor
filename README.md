@@ -16,7 +16,7 @@ This application requires:
 
 - Ruby 2.3.3
 - Rails 5.0.2
-- PostgreSQL and SQLite - should also work with others
+- PostgreSQL or SQLite - should also work with others
 - Twitter Bootstrap 3.3.6
 - Devise 4.2.0
 - Rspec 3.5.4
