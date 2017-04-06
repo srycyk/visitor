@@ -1,4 +1,5 @@
 
+# Ensures that a child tag has the same user_id as its parent
 module TagOwnerEnforcement
   extend ActiveSupport::Concern
 

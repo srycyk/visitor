@@ -1,6 +1,7 @@
 
 require 'csv'
 
+# Converts a list of Bookmark records into CSV text, sorted by their Tag's path
 class ExportBookmark
   CSV_FIELDS = %i(url to_path title description)
 

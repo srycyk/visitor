@@ -1,6 +1,6 @@
 
 class ApplicationController < ActionController::Base
-  DEMO_EMAIL =  Rails.application.secrets[:admin_email]
+  DEMO_EMAIL =  Rails.application.secrets[:admin_email] # Secrecy is pointless!
 
   protect_from_forgery with: :exception
 
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # Devise workround to allow name field in user forms
+  # Devise suggested workround to allow extra 'name' field in user forms
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
 

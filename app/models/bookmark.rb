@@ -1,4 +1,5 @@
 
+# A Bookmark's data record
 class Bookmark < ApplicationRecord
   include TagOwnerEnforcement
 

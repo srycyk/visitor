@@ -1,6 +1,8 @@
 
 require 'csv'
 
+# Adds new Bookmark records, given as input, the CSV data (created here),
+# or, otherwise, a list (of a list) of the fields, in constant FIELD_NAMES
 class BookmarkCsvLoader < Struct.new(:list, :tag_path, :user)
   FIELD_NAMES = %i(url tag title description)
 

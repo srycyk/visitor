@@ -1,4 +1,6 @@
 
+# Form object, used for end-user uploads of Firefox/Chrome Bookmark exports,
+# or else, of the custom CSV data created inside this app
 class ImportBookmark
   include ActiveModel::Model
 
@@ -14,7 +16,7 @@ class ImportBookmark
 
   validates :csv_text, presence: true, if: :persisted?
 
-  # Converts uploaded file to CSV, if necessary
+  # Converts uploaded file data to CSV, if necessary
   def create
     uploaded_data = bookmark_file.read
     uploaded_file = bookmark_file.original_filename
@@ -31,7 +33,7 @@ class ImportBookmark
     BookmarkCsvLoader.new(csv_text, tag_path, user).()
   end
 
-  # For PUT method on update
+  # To force PUT method on update (in 'form_for' helper method)
   def persisted?
     persistent
   end

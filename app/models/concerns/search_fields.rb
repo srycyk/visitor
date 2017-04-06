@@ -1,4 +1,5 @@
 
+# Utility class for searching a number of fields with the same query string
 module Concerns
   class SearchFields
     attr_accessor :fields

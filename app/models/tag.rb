@@ -1,4 +1,5 @@
 
+# A Tag's data record. they can be nested inside one another
 class Tag < ApplicationRecord
   include UserForTag
 
@@ -71,7 +72,7 @@ class Tag < ApplicationRecord
   end
 
   def info
-    "#{heading}, #{tags_count || 0} below, #{bookmarks_count || 0} bookmarked"
+    "#{heading}, with #{tags_count || 0} child(ren), and #{bookmarks_count || 0} bookmark(s)"
   end
 
   def to_tree(level=0, indent: '  ', eol: "\r\n")
@@ -86,11 +87,13 @@ class Tag < ApplicationRecord
 
   private
 
+  # Ensure no slash in name, since it's used as a delimiter
   def clean_name
     self.name = name.tr '/', '-' if name.index '/'
   end
 
   class << self
+    # Given a list of tag names, it persists a b-tree
     def create_tree(tag_or_user, *names)
       if name = names.pop
         create_tree(tag_or_user, *names)
@@ -100,6 +103,7 @@ class Tag < ApplicationRecord
       end
     end
 
+    # For eager fetching
     def tree_includes(depth, assoc=:tags)
       { assoc => depth <= 2 ? assoc : tree_includes(depth - 1, assoc) }
     end

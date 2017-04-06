@@ -1,4 +1,5 @@
 
+# Links a User to a Tag, included in Tag class
 module UserForTag
   extend ActiveSupport::Concern
 

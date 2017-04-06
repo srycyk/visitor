@@ -22,6 +22,12 @@ RSpec.feature "Tags", type: :feature do
 
       expect(page).not_to have_content(/Name.+#{tag}/)
     end
+
+    scenario "by parent tag" do
+      visit tags_path tag_id: tag.tag.to_param
+
+      expect(page).to have_content(/Name.+#{tag.tag.tag}/)
+    end
   end
 
   feature "new tag" do

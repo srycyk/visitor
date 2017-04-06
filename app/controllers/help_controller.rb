@@ -1,4 +1,5 @@
 
+# For new or unregistered users
 class HelpController < TagTreeController
   skip_before_action :authenticate_user!
 

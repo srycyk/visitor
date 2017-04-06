@@ -2,6 +2,8 @@
 require 'csv'
 require 'nokogiri'
 
+# Takes as input the HTML produced by a Firefox or Chrome bookmark export
+# Returns a list (of a list) containg a Bookmark's url, tag and descriptive text
 class BookmarkLinkParser < Nokogiri::XML::SAX::Document
   attr_accessor :html
 

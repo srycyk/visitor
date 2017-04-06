@@ -3,7 +3,7 @@
   <button class="btn btn-link btn-xs dropdown-toggle" type="button"
           id="dropdown-<%= dom_id tag %>" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="true"
-          title="Actions for <%= tag.info %>">
+          title="Actions for tag <%= tag.info %>">
     <%= icon 'list' %>
   </button>
 
@@ -34,7 +34,7 @@
       <%= link_to "New bookmark under #{tag}", [:new, tag, :bookmark] %>
     </li>
     <li>
-      <%= link_to site_count(tag), [tag, :bookmarks] %>
+      <%= link_to "Show #{site_count(tag)}", [tag, :bookmarks] %>
     </li>
   </ul>
 </span>

@@ -1,4 +1,6 @@
 
+# Fetches a list of Bookmarks for either a user, or under a parent Tag
+# And, optionally, a partial string search, and/or a field name to order by
 class BookmarkLister
   attr_accessor :relation
 

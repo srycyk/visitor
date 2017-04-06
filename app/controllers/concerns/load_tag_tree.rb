@@ -1,4 +1,5 @@
 
+# Fetching the Tag tree data, for the menu
 module Concerns
   module LoadTagTree
     extend ActiveSupport::Concern

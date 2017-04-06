@@ -33,7 +33,7 @@ module ApplicationHelper
       sign_up: 'For new users',
       demo: 'Log in as demo user',
       end_demo: 'Log out of this demonstration',
-      new_tag_top: 'Create a top level tag',
+      new_tag_top: 'Create a top level tag, start here if adding bookmarks one by one',
       new_tag: 'Create a tag',
       list_tags: 'List all tags',
       list_bookmarks: 'List all bookmarked sites',
