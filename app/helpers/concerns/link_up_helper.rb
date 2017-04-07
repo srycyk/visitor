@@ -1,4 +1,5 @@
 
+# Called directly in views to render link
 module Concerns
   module LinkUpHelper
     def link_up(type, path=nil, opts={}, extra_opts={})

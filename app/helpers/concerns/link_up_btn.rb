@@ -1,4 +1,5 @@
 
+# For rendering links as Bootstrap button
 module Concerns
   class LinkUpBtn < LinkUp
     mattr_accessor :btn_size

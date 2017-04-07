@@ -1,4 +1,5 @@
 
+# For rendering links as a Bootstrap icon
 module Concerns
   class LinkUpIcon < LinkUp
     attr_accessor :icon, :path

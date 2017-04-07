@@ -1,4 +1,5 @@
 
+# Stores the various field sizes
 module Concerns
   class FormFieldSettings
     attr_accessor :field_size, :label_cols, :field_cols

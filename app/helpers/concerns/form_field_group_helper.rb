@@ -14,6 +14,7 @@ module Concerns
       { class: "form-control #{extra_classes}" }
     end
 
+    # Changes a form's size and field alignmen, 3 are preset below
     def form_field_settings(atts=nil)
       if atts
         @form_field_settings = FormFieldSettings.new(**atts)
@@ -38,6 +39,8 @@ module Concerns
       form_field_settings
     end
 
+    # Renders an HTML form field, with Bootstrap styling
+    # The various types are handled in the methods below
     def field_group(name, locals={}, options={}, &block)
       locals = locals.merge name: name
 
@@ -87,6 +90,7 @@ module Concerns
       end
     end
 
+    # Standard submit button for the form's preset size
     def submit_class(size=nil)
       size = form_field_settings.field_size unless size
 

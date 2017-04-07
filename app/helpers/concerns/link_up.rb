@@ -1,4 +1,5 @@
 
+# For rendering links as text
 module Concerns
   class LinkUp
     attr_accessor :type, :options

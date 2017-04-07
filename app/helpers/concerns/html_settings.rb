@@ -1,4 +1,5 @@
 
+# Site-wide Bootstrap settings, for consistency and easier maintenance
 module Concerns
   module HtmlSettings
     def table_classes
