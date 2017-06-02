@@ -19,8 +19,9 @@
 
         <span class="pull-right">
           <% title = "Display list of #{site_count(tag)}" %>
+          <% klass = "btn btn-xs btn-#{@tag == tag ? 'link' : 'default'}" %>
 
-          <%= link_to [tag, :bookmarks], title: title do %>
+          <%= link_to [tag, :bookmarks], title: title, class: klass do %>
             <span class="badge"><%= tag.bookmarks_count or '0' %></span>
           <% end %>
         </span>
